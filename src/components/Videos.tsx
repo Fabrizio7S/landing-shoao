@@ -1,4 +1,4 @@
-import imagen from "./image.png";
+import imagen from "../assets/image.png";
 
 const videos = [
   {
