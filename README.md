@@ -1,73 +1,30 @@
-# React + TypeScript + Vite
+# Estructura del Código Fuente (`src/`)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este documento detalla el propósito de cada una de las carpetas dentro de `src/` para mantener la organización y buenas prácticas en el proyecto.
 
-Currently, two official plugins are available:
+## Carpetas Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 📂 `assets/`
+Contiene todos los recursos estáticos del proyecto que son importados directamente por los archivos de código (procesados por Vite).
+* 📁 `images/`: Logotipos, fotografías e imágenes generales (.png, .jpg, .webp).
+* 📁 `icons/`: Iconos en formato SVG o componentes de iconos reutilizables.
 
-## React Compiler
+### 📂 `components/`
+Contiene todos los componentes de React. Está dividido de forma jerárquica para mantener la reutilización y el orden:
+* 📁 `ui/`: Componentes atómicos o básicos muy reutilizables que no tienen lógica compleja de negocio (ej. `Button.tsx`, `Card.tsx`, `Input.tsx`).
+* 📁 `layout/`: Estructuras fijas y compartidas de la página (ej. `Navbar.tsx`, `Footer.tsx`).
+* 📁 `sections/`: Secciones principales y específicas de la landing page (ej. `Hero.tsx`, `Videos.tsx`).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 📂 `hooks/`
+Espacio dedicado para almacenar tus **Custom Hooks** de React (funciones personalizadas que encapsulan lógica del ciclo de vida y estado de React, ej. `useScroll.ts`, `useWindowSize.ts`).
 
-## Expanding the ESLint configuration
+### 📂 `utils/`
+Contiene funciones helper o utilitarias independientes de React. Son funciones puras que realizan cálculos, formateos o validaciones comunes (ej. formateadores de fechas, validadores de formularios).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Archivos Principales en Raíz
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+* 📄 `App.tsx`: Componente principal que orquesta y renderiza las diferentes secciones de la landing page.
+* 📄 `main.tsx`: Punto de entrada de la aplicación de React donde se monta el árbol de componentes en el DOM.
+* 📄 `index.css`: Archivo de estilos CSS global (aquí se configuran Tailwind CSS y estilos base).
