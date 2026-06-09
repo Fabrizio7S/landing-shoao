@@ -26,6 +26,12 @@ Espacio dedicado para almacenar tus **Custom Hooks** de React (funciones persona
 ### 📂 `utils/`
 Contiene funciones helper o utilitarias independientes de React. Son funciones puras que realizan cálculos, formateos o validaciones comunes (ej. formateadores de fechas, validadores de formularios).
 
+### 📂 `data/`
+Almacena archivos de datos estáticos o de simulación (mock data) de la aplicación (ej. `videos.ts`), ayudando a separar el contenido y la información del diseño visual de los componentes.
+
+### 📂 `types/`
+Carpeta destinada a declarar las interfaces y tipos de TypeScript de uso compartido en toda la aplicación (ej. `Video.ts`), lo cual asegura la integridad y consistencia del código.
+
 ---
 
 ## Archivos Principales en Raíz
