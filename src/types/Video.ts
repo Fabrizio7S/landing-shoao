@@ -3,4 +3,5 @@ export interface Video {
   title: string;
   image: string;
   url?: string;
+  category?: string;
 }

@@ -6,6 +6,7 @@ export const videosData: Video[] = [
     id: 1,
     title: "Guia Adversary",
     image: imagen,
-    url: "https://www.youtube.com/watch?v=MioqDrwyRp8",
+    url: "https://www.youtube.com/embed/MioqDrwyRp8",
+    category: "Guía de Boss",
   },
 ];
