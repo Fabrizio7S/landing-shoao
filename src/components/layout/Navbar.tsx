@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -6,9 +7,9 @@ const Navbar = () => {
         
         <ul className="flex gap-8 text-lg">
           <li>
-            <a href="#" className="hover:underline underline-offset-4">
+            <Link to="/" className="hover:underline underline-offset-4">
               Home
-            </a>
+            </Link>
           </li>
 
           <li>
@@ -18,9 +19,9 @@ const Navbar = () => {
           </li>
 
           <li>
-            <a href="#" className="hover:underline underline-offset-4">
-              Service
-            </a>
+            <Link to="/setup" className="hover:underline underline-offset-4">
+              Setup
+            </Link>
           </li>
 
           <li>
