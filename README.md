@@ -15,6 +15,11 @@ Contiene todos los componentes de React. Está dividido de forma jerárquica par
 * 📁 `layout/`: Estructuras fijas y compartidas de la página (ej. `Navbar.tsx`, `Footer.tsx`).
 * 📁 `sections/`: Secciones principales y específicas de la landing page (ej. `Hero.tsx`, `Videos.tsx`).
 
+### 📂 `pages/`
+Contiene las páginas o vistas completas del sitio web (rutas). Actúan como contenedores que importan y organizan los diferentes componentes de la sección `components/`.
+* 📁 `Home.tsx`: La página de inicio principal (renderiza las secciones de Hero y Videos).
+* 📁 `Setup.tsx`: La página de equipamiento técnico y periféricos con enlaces de afiliados.
+
 ### 📂 `hooks/`
 Espacio dedicado para almacenar tus **Custom Hooks** de React (funciones personalizadas que encapsulan lógica del ciclo de vida y estado de React, ej. `useScroll.ts`, `useWindowSize.ts`).
 
