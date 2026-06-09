@@ -1,4 +1,4 @@
-import imagen from "../assets/imagen.jpg";
+import imagen from "../../assets/imagen.jpg";
 const Hero = () => {
   return (
     <section className="bg-white min-h-screen flex items-center">
