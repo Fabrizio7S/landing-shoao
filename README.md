@@ -39,3 +39,11 @@ Carpeta destinada a declarar las interfaces y tipos de TypeScript de uso compart
 * 📄 `App.tsx`: Componente principal que orquesta y renderiza las diferentes secciones de la landing page.
 * 📄 `main.tsx`: Punto de entrada de la aplicación de React donde se monta el árbol de componentes en el DOM.
 * 📄 `index.css`: Archivo de estilos CSS global (aquí se configuran Tailwind CSS y estilos base).
+
+---
+
+## Sistema de Diseño y Tipografías
+
+El proyecto utiliza un sistema tipográfico **Tech-Minimalist** limpio y optimizado para pantallas:
+* **Títulos (Headings):** `Outfit` (fuente geométrica sans-serif moderna, ideal para títulos impactantes y secciones de productos/setup).
+* **Cuerpo de texto (Body):** `Inter` (fuente sans-serif de alta legibilidad en pantallas, inspirada en aliabdaal.com).
