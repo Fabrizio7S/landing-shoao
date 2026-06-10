@@ -3,81 +3,80 @@ import type { boss } from "../types/Boss";
 export const bossesData: boss[] = [
   {
     name: "Lotus",
-    image: "/bosses/lotus.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Lotus.png",
   },
   {
-    name: "Damian",
-    image: "/bosses/damian.webp",
-    videoId: "MioqDrwyRp8",
+    name: "Damien",
+    image: "/src/assets/Bos/Boss_UI_-_First_Damien.png",
   },
   {
     name: "Guardian Angel Slime",
-    image: "/bosses/guardian-angel-slime.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Guardian_Angel_Slime.png",
   },
   {
     name: "Lucid",
-    image: "/bosses/lucid.webp",
+    image: "/src/assets/Bos/Boss_UI_-_First_Adversary.png",
   },
   {
     name: "Will",
-    image: "/bosses/will.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Lucid.png",
   },
   {
     name: "Gloom",
-    image: "/bosses/gloom.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Giant_Monster_Gloom.png",
   },
   {
     name: "Verus Hilla",
-    image: "/bosses/verus-hilla.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Verus_Hilla.png",
     videoId: "6JUW_qtpGvs",
   },
   {
     name: "Malitia",
-    image: "/bosses/malitia.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Malitia.png",
   },
   {
     name: "Darknell",
-    image: "/bosses/darknell.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Guard_Captain_Darknell.png",
   },
   {
     name: "Black Mage",
-    image: "/bosses/black-mage.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Black_Mage.png",
   },
   {
     name: "Chosen Seren",
-    image: "/bosses/chosen-seren.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Chosen_Seren.png",
     videoId: "2idD656nFFI",
   },
   {
     name: "Kalos",
-    image: "/bosses/kalos.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Kalos_the_Guardian.png",
   },
   {
     name: "First Adversary",
-    image: "/bosses/first-adversary.webp",
+    image: "/src/assets/Bos/Boss_UI_-_First_Adversary.png",
     videoId: "MioqDrwyRp8",
   },
   {
     name: "Kaling",
-    image: "/bosses/kaling.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Kaling.png",
     videoId: "UoI19DIzeSE",
   },
   {
     name: "Malefic Star",
-    image: "/bosses/malefic-star.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Malefic_Star.png",
   },
   {
     name: "Limbo",
-    image: "/bosses/limbo.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Limbo.png",
     videoId: "gl0D-_Iyz4I",
   },
   {
     name: "Baldrix",
-    image: "/bosses/baldrix.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Baldrix.png",
     videoId: "SQD9CW5mQH8",
   },
   {
     name: "Jupiter",
-    image: "/bosses/jupiter.webp",
+    image: "/src/assets/Bos/Boss_UI_-_Jupiter.png",
   },
 ]
