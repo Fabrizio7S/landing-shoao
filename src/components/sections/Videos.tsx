@@ -12,7 +12,7 @@ const Videos = () => {
         <div className="mb-12">
           <h1 className="text-5xl font-extrabold text-gray-900 mb-2">Videos</h1>
           <h2 className="text-2xl text-gray-600 font-medium text-left">
-            Guías de Bosses y Mecánicas
+            Guías de Bosses 
           </h2>
         </div>
 
