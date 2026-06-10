@@ -1,12 +1,40 @@
 import type { Video } from "../types/Video";
-import imagen from "../assets/image.png";
 
 export const videosData: Video[] = [
   {
-    id: 1,
-    title: "Guia Adversary",
-    image: imagen,
-    url: "https://www.youtube.com/embed/MioqDrwyRp8",
+    videoId: "MioqDrwyRp8",
     category: "Guía de Boss",
+  },
+  {
+    videoId: "fRtsMN3_cIs",
+    category: "Guía / Tutorial",
+  },
+  {
+    videoId: "W0WlqjHBImg",
+    category: "Guía / Tutorial",
+  },
+  {
+    videoId: "paINYrMAOLI",
+    category: "Guía / Tutorial",
+  },
+  {
+    videoId: "eWTY__bTPnc",
+    category: "Guía / Tutorial",
+  },
+  {
+    videoId: "h2slKncrm7Q",
+    category: "Comunidad / Evento",
+  },
+  {
+    videoId: "--GXbgmqe7s",
+    category: "Novedades / Parches",
+  },
+  {
+    videoId: "Ma_MEeQHNhI",
+    category: "Comunidad / Trailer",
+  },
+  {
+    videoId: "KId_XJ3DXCI",
+    category: "Novedades / Parches",
   },
 ];
