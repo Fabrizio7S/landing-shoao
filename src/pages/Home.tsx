@@ -1,4 +1,4 @@
-import Bosses from "../components/sections/bosses";
+import Bosses from "../components/sections/Bosses";
 import Hero from "../components/sections/Hero";
 import Videos from "../components/sections/Videos";
 
