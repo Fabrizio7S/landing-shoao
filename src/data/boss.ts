@@ -57,10 +57,20 @@ export const bossesData: boss[] = [
     videoId: "MioqDrwyRp8",
   },
   {
-    name: "Kaling",
-    image: "/src/assets/Bos/Boss_UI_-_Kaling.png",
-    videoId: "UoI19DIzeSE",
-  },
+  name: "Kaling",
+  image: "/src/assets/Bos/Boss_UI_-_Kaling.png",
+  videoId: "UoI19DIzeSE",
+  extraVideos: [
+    {
+      title: "Fase 2",
+      videoId: "ankVNbZBaLg",
+    },
+    {
+      title: "Fase 3",
+      videoId: "BgURphDcqnM",
+    },
+  ],
+},
   {
     name: "Malefic Star",
     image: "/src/assets/Bos/Boss_UI_-_Malefic_Star.png",
