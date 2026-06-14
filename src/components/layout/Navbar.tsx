@@ -2,35 +2,28 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className=" w-full bg-white text-black">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-center items-center">
-        
-        <ul className="flex gap-8 text-lg">
+    <nav className="w-full bg-white">
+      <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
+        <img
+          src="/src/assets/shoao.png"
+          alt="Shoao"
+          className="h-38 w-auto object-contain"
+        />
+
+        {/* Menu */}
+        <ul className="flex gap-10 text-lg font-medium">
           <li>
-            <Link to="/" className="hover:underline underline-offset-4">
+            <Link to="/" className="hover:text-blue-600 transition">
               Home
             </Link>
           </li>
 
           <li>
-            <a href="#" className="hover:underline underline-offset-4">
-              Videos
-            </a>
-          </li>
-
-          <li>
-            <Link to="/setup" className="hover:underline underline-offset-4">
+            <Link to="/setup" className="hover:text-blue-600 transition">
               Setup
             </Link>
           </li>
-
-          <li>
-            <a href="#" className="hover:underline underline-offset-4">
-                Contact
-            </a>
-          </li>
         </ul>
-
       </div>
     </nav>
   );
