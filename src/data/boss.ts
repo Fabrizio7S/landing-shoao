@@ -7,7 +7,7 @@ export const bossesData: boss[] = [
   },
   {
     name: "Damien",
-    image: "/src/assets/Bos/Boss_UI_-_First_Damien.png",
+    image: "/src/assets/Bos/Boss_UI_-_Damien.png",
   },
   {
     name: "Guardian Angel Slime",
