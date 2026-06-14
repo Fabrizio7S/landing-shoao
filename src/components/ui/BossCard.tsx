@@ -2,27 +2,17 @@ import type { boss } from "../../types/Boss";
 
 interface BossCardProps {
   boss: boss;
+  onClick?: (boss: boss) => void;
 }
 
-const BossCard = ({ boss }: BossCardProps) => {
+const BossCard = ({ boss, onClick }: BossCardProps) => {
   const hasGuide = Boolean(boss.videoId);
-
-  const handleClick = () => {
-    if (boss.videoId) {
-      window.open(
-        `https://www.youtube.com/watch?v=${boss.videoId}`,
-        "_blank"
-      );
-    }
-  };
 
   return (
     <div
-      onClick={handleClick}
+      onClick={() => hasGuide && onClick?.(boss)}
       className={`relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 ${
-        hasGuide
-          ? "cursor-pointer hover:scale-105"
-          : ""
+        hasGuide ? "cursor-pointer hover:scale-105" : ""
       }`}
     >
       <img
@@ -34,6 +24,7 @@ const BossCard = ({ boss }: BossCardProps) => {
             : "grayscale opacity-50"
         }`}
       />
+
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end">
         <h3 className="text-white font-bold text-lg p-3 drop-shadow-lg">
           {boss.name}
