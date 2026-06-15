@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/shoao_v1.png";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -10,7 +11,7 @@ const Navbar = () => {
         
         {/* Logo */}
         <img
-          src="/src/assets/shoao_v1.png"
+          src={logo}
           alt="Shoao"
           className="h-10 sm:h-12 w-auto object-contain"
         />

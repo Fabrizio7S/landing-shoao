@@ -1,3 +1,5 @@
+import logo from "../../assets/shoao_v1.png";
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -8,7 +10,7 @@ const Footer = () => {
         {/* Left Side: Logo & Copyright */}
         <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
           <img
-            src="/src/assets/shoao_v1.png"
+            src={logo}
             alt="Shoao"
             className="h-8 w-auto object-contain"
           />
