@@ -5,3 +5,7 @@ export interface SetupItem {
   description: string;
   affiliateUrl?: string;
 }
+
+export interface SetupCardProps {
+  item: SetupItem;
+}
