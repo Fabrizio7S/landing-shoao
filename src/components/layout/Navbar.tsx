@@ -5,9 +5,9 @@ const Navbar = () => {
     <nav className="w-full bg-white">
       <div className="max-w-7xl mx-auto px-8 py-6 flex items-center justify-between">
         <img
-          src="/src/assets/shoao.png"
+          src="/src/assets/shoao_v1.png"
           alt="Shoao"
-          className="h-38 w-auto object-contain"
+          className="h-12 w-auto object-contain"
         />
 
         {/* Menu */}
