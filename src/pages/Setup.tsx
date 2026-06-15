@@ -38,7 +38,7 @@ const Setup = () => {
   const categories: CategoryFilter[] = ["Componentes", "Periféricos", "Audio y Video", "Software"];
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div className="bg-white text-gray-800">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 py-28">
 
         {/* Cabecera */}
