@@ -2,8 +2,12 @@ import type { Video } from "../types/Video";
 
 export const videosData: Video[] = [
   {
-    videoId: "fRtsMN3_cIs",
-    category: "Guía / Tutorial",
+    videoId: "FVw40MC3ojw",
+    category: "Novedades / Parches",
+  },
+  {
+    videoId: "THZjCpzEZpQ",
+    category:"Novedades / Parches"
   },
   {
     videoId: "W0WlqjHBImg",
@@ -22,15 +26,27 @@ export const videosData: Video[] = [
     category: "Comunidad / Evento",
   },
   {
-    videoId: "--GXbgmqe7s",
+    videoId: "KId_XJ3DXCI",
     category: "Novedades / Parches",
   },
   {
-    videoId: "Ma_MEeQHNhI",
+    videoId: "1wgD1rc4t-k",
     category: "Comunidad / Trailer",
   },
   {
-    videoId: "KId_XJ3DXCI",
+    videoId: "C2U9UPKMWHU",
     category: "Novedades / Parches",
+  },
+  {
+    videoId: "aLgobblfmt0",
+    category:"Guía / Tutorial"
+  },
+   {
+    videoId: "SCZ_Bs7RT0Q",
+    category:"Resolución de dudas"
+  },
+   {
+    videoId: "VGNC0Bnd8Zo",
+    category:"Guía / Tutorial"
   },
 ];
