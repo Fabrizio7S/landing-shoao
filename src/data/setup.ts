@@ -69,6 +69,7 @@ export const setupData: SetupItem[] = [
     name: "Logitech MX Master 3S (Blanco)",
     category: "Periféricos",
     description: "Mouse inalámbrico premium para productividad con botones silenciosos, rueda electromagnética MagSpeed y gran ergonomía.",
+    affiliateUrl: "https://a.juntoz.com/y8eddy3s",
   },
   {
     id: 12,
@@ -89,6 +90,7 @@ export const setupData: SetupItem[] = [
     name: "Sony WH-1000XM5 (Plata)",
     category: "Audio y Video",
     description: "Audífonos inalámbricos de diadema con cancelación de ruido activa (ANC) líder en la industria, sonido premium y gran comodidad.",
+    affiliateUrl: "https://a.juntoz.com/h8wvy3z",
   },
   {
     id: 15,
@@ -107,6 +109,7 @@ export const setupData: SetupItem[] = [
     name: "Sony Alpha ILCE-6400 APS-C",
     category: "Audio y Video",
     description: "Cámara mirrorless utilizada como cámara principal/webcam de alta gama para streaming por su enfoque automático híbrido ultrarrápido y nitidez.",
+    affiliateUrl: "https://a.juntoz.com/mrrsxcx6",
   },
   {
     id: 18,
