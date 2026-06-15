@@ -8,13 +8,15 @@ const Navbar = () => {
   return (
     <nav className="w-full bg-white shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between">
-        
-        {/* Logo */}
-        <img
-          src={logo}
-          alt="Shoao"
-          className="h-10 sm:h-12 w-auto object-contain"
-        />
+
+        {/* LOGO (AHORA ES CLICKABLE) */}
+        <Link to="/" onClick={() => setOpen(false)}>
+          <img
+            src={logo}
+            alt="Shoao"
+            className="h-10 sm:h-12 w-auto object-contain cursor-pointer"
+          />
+        </Link>
 
         {/* Desktop menu */}
         <ul className="hidden md:flex gap-10 text-lg font-medium">
