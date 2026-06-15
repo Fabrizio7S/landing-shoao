@@ -21,13 +21,13 @@ const Hero = () => {
         {/* TEXTO Y REDES CENTRADOS */}
         <div className="flex flex-col items-center text-center">
           <h1 className="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
-            Welcome
+            Bienvenidos
             <br />
             Mapleanos
           </h1>
 
           <p className="text-2xl text-gray-700 leading-relaxed max-w-md mb-8 mx-auto">
-            Mi nombre es Jhohao jugador veterano que hace videos 🍁
+            Mi nombre es Jhohao. Jugador veterano de MapleStory que hace videos 🍁
           </p>
 
           {/* ICONOS */}
