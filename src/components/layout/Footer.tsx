@@ -12,6 +12,7 @@ const Footer = () => {
             alt="Shoao"
             className="h-8 w-auto object-contain"
           />
+          <p className="text-sm text-gray-500">© {currentYear} Shoao. Todos los derechos reservados.</p>
         </div>
 
         {/* Right Side: Social Networks */}
