@@ -6,7 +6,6 @@ import firstAdversary from "../assets/Bos/Boss_UI_-_First_Adversary.png";
 import lucid from "../assets/Bos/Boss_UI_-_Lucid.png";
 import giantMonsterGloom from "../assets/Bos/Boss_UI_-_Giant_Monster_Gloom.png";
 import verusHilla from "../assets/Bos/Boss_UI_-_Verus_Hilla.png";
-import malitia from "../assets/Bos/Boss_UI_-_Malitia.png";
 import guardCaptainDarknell from "../assets/Bos/Boss_UI_-_Guard_Captain_Darknell.png";
 import blackMage from "../assets/Bos/Boss_UI_-_Black_Mage.png";
 import chosenSeren from "../assets/Bos/Boss_UI_-_Chosen_Seren.png";
@@ -17,6 +16,7 @@ import limbo from "../assets/Bos/Boss_UI_-_Limbo.png";
 import baldrix from "../assets/Bos/Boss_UI_-_Baldrix.png";
 import jupiter from "../assets/Bos/Boss_UI_-_Jupiter.png";
 import will from "../assets/Bos/Boss_UI_-_Will.png";
+import kai from "../assets/Bos/Boss_UI_-_Kai.png";
 
 export const bossesData: boss[] = [
   {
@@ -49,16 +49,16 @@ export const bossesData: boss[] = [
     videoId: "6JUW_qtpGvs",
   },
   {
-    name: "Malitia",
-    image: malitia,
-  },
-  {
     name: "Darknell",
     image: guardCaptainDarknell,
   },
   {
     name: "Black Mage",
     image: blackMage,
+  },
+  {
+    name:"Kai",
+    image:kai,
   },
   {
     name: "Chosen Seren",
