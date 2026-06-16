@@ -10,7 +10,7 @@ const Videos = () => {
     <section className="bg-gray-50 py-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="mb-12">
-          <h1 className="text-5xl font-extrabold text-gray-900 mb-2">Videos</h1>
+          <h1 className="text-6xl font-extrabold text-gray-900 mb-2">Videos</h1>
           <h2 className="text-2xl text-gray-600 font-medium text-left">
             Videos Recientes
           </h2>
