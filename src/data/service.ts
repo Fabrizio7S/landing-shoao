@@ -27,7 +27,7 @@ export const servicesData: Service[] = [
   {
     id: 3,
     number: "03",
-    title: "Servicio de Lvleo",
+    title: "Servicio de Leveleo",
     description:
       "Subo de nivel tu personaje de la manera más eficiente para que avances más rápido y aproveches mejor tu tiempo de juego.",
   },
