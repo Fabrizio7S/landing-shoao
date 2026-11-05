@@ -24,6 +24,7 @@ export const bossesData: boss[] = [
   {
     name: "Maerin",
     image: maerin,
+    guideUrl: "/guias/maerin/",
   },
   {
     name: "Bellona",
