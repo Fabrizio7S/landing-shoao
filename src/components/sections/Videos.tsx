@@ -1,10 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { videosData } from "../../data/videos";
 import type { Video } from "../../types/Video";
 import VideoCard from "../ui/VideoCard";
 
+interface ApiVideo {
+  id: string;
+  title: string;
+  publishedAt: string | null;
+  thumbnail: string;
+}
+
+// Si /api/videos tarda más que esto, se muestran los videos de respaldo.
+const API_TIMEOUT_MS = 15000;
+
+// Si un video del feed también está en data/videos.ts, se reutiliza su categoría.
+const categoryById = new Map(videosData.map((v) => [v.videoId, v.category]));
+
 const Videos = () => {
-  const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+  // null = cargando. Si /api/videos falla se usan los videos de data/videos.ts.
+  const [videos, setVideos] = useState<Video[] | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let timedOut = false;
+    const timer = setTimeout(() => {
+      timedOut = true;
+      controller.abort();
+    }, API_TIMEOUT_MS);
+    fetch("/api/videos", { signal: controller.signal })
+      .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+      .then((data: { videos?: ApiVideo[] }) => {
+        if (!data.videos?.length) throw new Error("sin videos");
+        setVideos(
+          data.videos.map((v) => ({
+            videoId: v.id,
+            title: v.title,
+            thumbnail: v.thumbnail,
+            publishedAt: v.publishedAt ?? undefined,
+            category: categoryById.get(v.id),
+          })),
+        );
+      })
+      .catch(() => {
+        // Abortado por desmontar el componente: no hacer nada.
+        if (!controller.signal.aborted || timedOut) setVideos(videosData);
+      })
+      .finally(() => clearTimeout(timer));
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, []);
 
   return (
     <section className="bg-gray-50 py-20">
@@ -17,14 +63,25 @@ const Videos = () => {
         </div>
 
         {/* Grid de Videos */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videosData.map((video: Video) => (
-            <VideoCard 
-              key={video.videoId} 
-              video={video} 
-              onPlay={(url) => setActiveVideoUrl(url)} 
-            />
-          ))}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          aria-busy={videos === null}
+        >
+          {videos === null
+            ? Array.from({ length: 6 }, (_, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 animate-pulse"
+                >
+                  <div className="aspect-video bg-gray-100" />
+                  <div className="p-6 space-y-3">
+                    <div className="h-5 bg-gray-100 rounded w-5/6" />
+                    <div className="h-5 bg-gray-100 rounded w-2/3" />
+                    <div className="h-4 bg-gray-100 rounded w-20 mt-6" />
+                  </div>
+                </div>
+              ))
+            : videos.map((video) => <VideoCard key={video.videoId} video={video} />)}
         </div>
 
         {/* Botón/Enlace al canal al final de la sección */}
@@ -42,37 +99,6 @@ const Videos = () => {
           </a>
         </div>
       </div>
-
-      {/* Modal del reproductor de video */}
-      {activeVideoUrl && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm"
-          onClick={() => setActiveVideoUrl(null)}
-        >
-          <div 
-            className="relative max-w-4xl w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button 
-              onClick={() => setActiveVideoUrl(null)}
-              className="absolute top-4 right-4 text-white hover:text-gray-300 z-10 bg-black/50 p-2 rounded-full cursor-pointer hover:bg-black/80 transition-colors"
-              aria-label="Cerrar modal"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            
-            <iframe
-              className="w-full h-full"
-              src={`${activeVideoUrl}?autoplay=1`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

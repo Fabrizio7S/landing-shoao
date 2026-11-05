@@ -3,41 +3,39 @@ import type { Video } from "../../types/Video";
 
 interface VideoCardProps {
   video: Video;
-  onPlay?: (url: string) => void;
 }
 
-const VideoCard = ({ video, onPlay }: VideoCardProps) => {
-  const [title, setTitle] = useState("Cargando título...");
-  const embedUrl = `https://www.youtube.com/embed/${video.videoId}`;
-  const thumbnailUrl = `https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`;
+const VideoCard = ({ video }: VideoCardProps) => {
+  const [fetchedTitle, setFetchedTitle] = useState("Cargando título...");
+  const title = video.title ?? fetchedTitle;
+  const watchUrl = `https://www.youtube.com/watch?v=${video.videoId}`;
+  const thumbnailUrl =
+    video.thumbnail ?? `https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`;
 
+  // Solo los videos de respaldo (escritos a mano) no traen título.
   useEffect(() => {
-    fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${video.videoId}`)
+    if (video.title) return;
+    fetch(`https://noembed.com/embed?url=${watchUrl}`)
       .then((res) => res.json())
-      .then((data) => {
-        if (data && data.title) {
-          setTitle(data.title);
-        } else {
-          setTitle("Video de YouTube");
-        }
-      })
-      .catch(() => {
-        setTitle("Video de YouTube");
-      });
-  }, [video.videoId]);
+      .then((data) => setFetchedTitle(data?.title || "Video de YouTube"))
+      .catch(() => setFetchedTitle("Video de YouTube"));
+  }, [video.title, watchUrl]);
 
   return (
     <div className="group bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100 flex flex-col h-full">
-      <div 
-        className="relative aspect-video overflow-hidden cursor-pointer bg-gray-100" 
-        onClick={() => onPlay?.(embedUrl)}
+      <a
+        href={watchUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative aspect-video overflow-hidden cursor-pointer bg-gray-100 block"
       >
         <img
           src={thumbnailUrl}
           alt={title}
+          loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-      </div>
+      </a>
 
       <div className="p-6 flex flex-col flex-grow">
         {video.category && (
@@ -48,13 +46,15 @@ const VideoCard = ({ video, onPlay }: VideoCardProps) => {
         <h3 className="text-xl font-bold text-gray-800 line-clamp-2 mb-4 group-hover:text-blue-600 transition-colors flex-grow">
           {title}
         </h3>
-        
-        <button 
-          onClick={() => onPlay?.(embedUrl)}
+
+        <a
+          href={watchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-sm font-semibold text-gray-955 hover:text-blue-600 flex items-center gap-1 transition-colors self-start cursor-pointer"
         >
           Ver Video &rarr;
-        </button>
+        </a>
       </div>
     </div>
   );
