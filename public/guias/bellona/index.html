@@ -110,11 +110,17 @@ footer{color:var(--muted);font-size:13px;text-align:center;margin-top:48px}
 @media (max-width:420px){
   .grid.c2,.grid.c3,.grid.c4{grid-template-columns:1fr}
 }
+
+.lang{margin-left:auto;position:sticky;right:0;display:inline-flex;flex:none;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:2px;box-shadow:-12px 0 12px var(--bg)}
+.nav .lang a{padding:4px 11px;font-size:13px;font-weight:600;color:var(--muted);border-radius:999px}
+.nav .lang a[aria-current]{background:var(--ink);color:var(--surface)}
+.nav .lang a[aria-current]:hover{background:var(--ink);color:var(--surface)}
 </style>
+<link rel="alternate" hreflang="es" href="./"><link rel="alternate" hreflang="en" href="en.html">
 </head>
 <body>
 <script src="/guias/_comun/barra-shoao.js"></script>
-<nav class="nav" aria-label="Secciones"><div class="nav-in"><b>Bellona</b><a href="#caracteristicas">Características</a><a href="#insane">Insane</a><a href="#fases">Fases</a><a href="#morados">Morados</a><a href="#rojos">Rojos</a><a href="#frenesi">Frenesí</a><a href="#recompensas">Recompensas</a><a href="#creditos">Créditos</a></div></nav>
+<nav class="nav" aria-label="Secciones"><div class="nav-in"><b>Bellona</b><a href="#caracteristicas">Características</a><a href="#insane">Insane</a><a href="#fases">Fases</a><a href="#morados">Morados</a><a href="#rojos">Rojos</a><a href="#frenesi">Frenesí</a><a href="#recompensas">Recompensas</a><a href="#creditos">Créditos</a><span class="lang" role="group" aria-label="Idioma / Language"><a href="./" hreflang="es" lang="es" aria-current="true">Español</a><a href="en.html" hreflang="en" lang="en">English</a></span></div></nav>
 <main>
 <style>.recs{background:var(--surface);border:1px solid var(--silver);border-radius:18px;padding:4px 22px 8px;margin:24px 0}.callout{margin:14px 0 6px}</style>
 <header class="hero">
