@@ -5,6 +5,9 @@ import Hero from "../components/sections/Hero";
 import Services from "../components/sections/Services";
 import Videos from "../components/sections/Videos";
 
+// Sección de servicios oculta por ahora. Para volver a mostrarla, pon true.
+const SHOW_SERVICES = false;
+
 const Home = () => {
   const { hash } = useLocation();
 
@@ -18,7 +21,7 @@ const Home = () => {
     <>
       <Hero />
       <Bosses/>
-      <Services/>
+      {SHOW_SERVICES && <Services />}
       <Videos />
     </>
   );
