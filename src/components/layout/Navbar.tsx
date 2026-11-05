@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/images/brand/shoao-logo.png";
+import logo from "../../assets/images/brand/shoao-logo.svg";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);

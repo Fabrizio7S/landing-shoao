@@ -24,7 +24,7 @@ landing-shoao/
 │   └── guias/              Guías de bosses (páginas HTML independientes)
 │       ├── _comun/         Lo que comparten todas las guías
 │       │   ├── barra-shoao.js   Barra superior con logo y "Volver a guías"
-│       │   └── shoao-logo.png
+│       │   └── shoao-logo.svg
 │       ├── bellona/        → shoaomaple.com/guias/bellona/
 │       └── mayrin/         → shoaomaple.com/guias/mayrin/
 └── src/                    Código de React
