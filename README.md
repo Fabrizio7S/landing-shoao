@@ -23,8 +23,9 @@ landing-shoao/
 │   ├── favicon.png         Icono de la pestaña
 │   └── guias/              Guías de bosses (páginas HTML independientes)
 │       ├── _comun/         Lo que comparten todas las guías
-│       │   ├── barra-shoao.js   Barra superior con logo y "Volver a guías"
-│       │   └── shoao-logo.svg
+│       │   ├── barra-shoao.js   Barra superior: logo, "Volver a guías" y modo Claro | Oscuro
+│       │   ├── shoao-logo.svg
+│       │   └── shoao-logo-dark.svg   Logo blanco (modo oscuro)
 │       ├── bellona/        → shoaomaple.com/guias/bellona/
 │       └── mayrin/         → shoaomaple.com/guias/mayrin/
 └── src/                    Código de React

@@ -53,11 +53,11 @@ const Videos = () => {
   }, []);
 
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 dark:bg-[#11141b] py-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="mb-12">
-          <h1 className="text-6xl font-extrabold text-gray-900 mb-2">Videos</h1>
-          <h2 className="text-2xl text-gray-600 font-medium text-left">
+          <h1 className="text-6xl font-extrabold text-gray-900 dark:text-white mb-2">Videos</h1>
+          <h2 className="text-2xl text-gray-600 dark:text-gray-400 font-medium text-left">
             Videos Recientes
           </h2>
         </div>
@@ -71,13 +71,13 @@ const Videos = () => {
             ? Array.from({ length: 6 }, (_, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100 animate-pulse"
+                  className="bg-white dark:bg-[#161a22] rounded-2xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-800 animate-pulse"
                 >
-                  <div className="aspect-video bg-gray-100" />
+                  <div className="aspect-video bg-gray-100 dark:bg-gray-800" />
                   <div className="p-6 space-y-3">
-                    <div className="h-5 bg-gray-100 rounded w-5/6" />
-                    <div className="h-5 bg-gray-100 rounded w-2/3" />
-                    <div className="h-4 bg-gray-100 rounded w-20 mt-6" />
+                    <div className="h-5 bg-gray-100 dark:bg-gray-800 rounded w-5/6" />
+                    <div className="h-5 bg-gray-100 dark:bg-gray-800 rounded w-2/3" />
+                    <div className="h-4 bg-gray-100 dark:bg-gray-800 rounded w-20 mt-6" />
                   </div>
                 </div>
               ))
@@ -90,7 +90,7 @@ const Videos = () => {
             href="https://www.youtube.com/@xShoao/videos"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-800 transition-colors group"
+            className="flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors group"
           >
             Ver todos los videos
             <span className="transform group-hover:translate-x-1 transition-transform">

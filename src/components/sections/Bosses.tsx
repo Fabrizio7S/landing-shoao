@@ -26,14 +26,14 @@ const Bosses = () => {
   };
 
   return (
-    <section id="bosses" className="bg-gray-50 py-20">
+    <section id="bosses" className="bg-gray-50 dark:bg-[#11141b] py-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
 
-        <h1 className="text-5xl font-extrabold text-gray-900 mb-2">
+        <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-2">
           Guías de Bosses
         </h1>
 
-        <p className="text-gray-600 mb-10">
+        <p className="text-gray-600 dark:text-gray-400 mb-10">
           Haz clic en un boss para ver su guía.
         </p>
 
@@ -56,10 +56,10 @@ const Bosses = () => {
           onClick={() => setSelectedBoss(null)}
         >
           <div
-            className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl"
+            className="bg-white dark:bg-[#161a22] rounded-2xl p-6 w-full max-w-md shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-2xl font-bold mb-5 text-gray-900">
+            <h2 className="text-2xl font-bold mb-5 text-gray-900 dark:text-white">
               {selectedBoss.name}
             </h2>
 
@@ -71,7 +71,7 @@ const Bosses = () => {
                   "_blank"
                 )
               }
-              className="w-full mb-3 bg-black hover:bg-gray-900 text-white py-3 rounded-lg font-semibold transition"
+              className="w-full mb-3 bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 py-3 rounded-lg font-semibold transition"
             >
               Fase 1
             </button>
@@ -86,7 +86,7 @@ const Bosses = () => {
                     "_blank"
                   )
                 }
-                className="w-full mb-3 bg-black hover:bg-gray-900 text-white py-3 rounded-lg font-semibold transition"
+                className="w-full mb-3 bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 py-3 rounded-lg font-semibold transition"
               >
                 {video.title}
               </button>
@@ -95,7 +95,7 @@ const Bosses = () => {
             {/* CERRAR */}
             <button
               onClick={() => setSelectedBoss(null)}
-              className="w-full mt-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition"
+              className="w-full mt-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800 transition"
             >
               Cerrar
             </button>

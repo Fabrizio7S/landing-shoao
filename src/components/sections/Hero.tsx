@@ -2,7 +2,7 @@ import imagen from "../../assets/images/home/hero-jhohao.jpg";
 
 const Hero = () => {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white dark:bg-[#0b0d12] py-20">
       <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
         {/* IMAGEN */}
@@ -20,13 +20,13 @@ const Hero = () => {
 
         {/* TEXTO Y REDES CENTRADOS */}
         <div className="flex flex-col items-center text-center">
-          <h1 className="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+          <h1 className="text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight mb-6">
             Bienvenidos
             <br />
             Mapleanos
           </h1>
 
-          <p className="text-2xl text-gray-700 leading-relaxed max-w-md mb-8 mx-auto">
+          <p className="text-2xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-md mb-8 mx-auto">
             Mi nombre es Jhohao. Jugador veterano de MapleStory que hace videos 🍁
           </p>
 
@@ -38,7 +38,7 @@ const Hero = () => {
               href="https://www.youtube.com/@xShoao"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-500 
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-300 
                          hover:bg-red-500 hover:text-white transition-all duration-300 shadow-sm"
               aria-label="YouTube"
             >
@@ -52,7 +52,7 @@ const Hero = () => {
               href="https://discord.gg/fEQrFcTKBz"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-500 
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-300 
                          hover:bg-[#5865F2] hover:text-white transition-all duration-300 shadow-sm"
               aria-label="Discord"
             >

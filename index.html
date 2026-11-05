@@ -8,6 +8,17 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href="https://shoaomaple.com/" />
 
+    <!-- Modo oscuro: se aplica antes de pintar la página para que no parpadee en blanco.
+         Usa lo que eligió el visitante (botón Claro | Oscuro) o, si nunca eligió, lo de su sistema. -->
+    <script>
+      try {
+        var tema = localStorage.getItem("tema");
+        if (tema === "oscuro" || (!tema && matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
+        }
+      } catch (e) {}
+    </script>
+
     <!-- SEO básico -->
     <meta name="description" content="Shoao es una página informativa creada con React." />
     <meta name="keywords" content="shoao, página informativa, react, web" />

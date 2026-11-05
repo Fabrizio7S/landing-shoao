@@ -23,13 +23,13 @@ const Setup = () => {
   ];
 
   return (
-    <div className="bg-white text-gray-800 min-h-screen">
+    <div className="bg-white text-gray-800 dark:bg-[#0b0d12] dark:text-gray-200 min-h-screen">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-20">
         <div className="text-center mb-20">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">
+          <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight">
             PC Setup &amp; Equipamiento
           </h1>
-          <p className="text-base text-gray-500 max-w-xl mx-auto font-medium">
+          <p className="text-base text-gray-500 dark:text-gray-400 max-w-xl mx-auto font-medium">
             El hardware, periféricos y herramientas que utilizo diariamente.
           </p>
         </div>
@@ -43,7 +43,7 @@ const Setup = () => {
 
             return (
               <div key={category} className="flex flex-col items-center">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-8 tracking-tight text-center">
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 tracking-tight text-center">
                   {CATEGORY_TITLES[category]}
                 </h2>
                 <div className="flex flex-wrap justify-center gap-3 max-w-4xl">

@@ -1,10 +1,11 @@
 import logo from "../../assets/images/brand/shoao-logo.svg";
+import logoDark from "../../assets/images/brand/shoao-logo-dark.svg";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-white border-t border-gray-100">
+    <footer className="w-full bg-white border-t border-gray-100 dark:bg-[#0b0d12] dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-8 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         
         {/* Left Side: Logo & Copyright */}
@@ -12,9 +13,14 @@ const Footer = () => {
           <img
             src={logo}
             alt="Shoao"
-            className="h-8 w-auto object-contain"
+            className="h-8 w-auto object-contain dark:hidden"
           />
-          <p className="text-sm text-gray-500">© {currentYear} Shoao. Todos los derechos reservados.</p>
+          <img
+            src={logoDark}
+            alt="Shoao"
+            className="h-8 w-auto object-contain hidden dark:block"
+          />
+          <p className="text-sm text-gray-500 dark:text-gray-400">© {currentYear} Shoao. Todos los derechos reservados.</p>
         </div>
 
         {/* Right Side: Social Networks */}
@@ -24,7 +30,7 @@ const Footer = () => {
             href="https://www.youtube.com/@xShoao"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#FF0000] transition-colors duration-200"
+            className="text-gray-400 dark:text-gray-500 hover:text-[#FF0000] transition-colors duration-200"
             aria-label="YouTube"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -37,7 +43,7 @@ const Footer = () => {
             href="https://www.twitch.tv/xshoao"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#9146FF] transition-colors duration-200"
+            className="text-gray-400 dark:text-gray-500 hover:text-[#9146FF] transition-colors duration-200"
             aria-label="Twitch"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
@@ -50,7 +56,7 @@ const Footer = () => {
             href="https://kick.com/shoao"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#53FC18] transition-colors duration-200"
+            className="text-gray-400 dark:text-gray-500 hover:text-[#53FC18] transition-colors duration-200"
             aria-label="Kick"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">
@@ -63,7 +69,7 @@ const Footer = () => {
             href="https://discord.gg/fEQrFcTKBz"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-[#5865F2] transition-colors duration-200"
+            className="text-gray-400 dark:text-gray-500 hover:text-[#5865F2] transition-colors duration-200"
             aria-label="Discord"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-6 sm:h-6">

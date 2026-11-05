@@ -2,14 +2,14 @@ import { servicesData } from "../../data/services";
 
 const Services = () => {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white dark:bg-[#0b0d12] py-20">
       <div className="max-w-7xl mx-auto px-6 sm:px-10">
 
-        <h2 className="text-6xl font-extrabold text-gray-900 mb-2">
+        <h2 className="text-6xl font-extrabold text-gray-900 dark:text-white mb-2">
           Servicios
         </h2>
 
-        <p className="text-gray-600 mb-10">
+        <p className="text-gray-600 dark:text-gray-400 mb-10">
           Elige el servicio que te interese y envíame un mensaje por Discord para coordinar los detalles.
         </p>
 
@@ -23,13 +23,13 @@ const Services = () => {
               className="
                 group
                 relative
-                bg-white
-                border-2 border-gray-200
+                bg-white dark:bg-[#161a22]
+                border-2 border-gray-200 dark:border-gray-800
                 rounded-3xl
                 p-8
                 flex flex-col gap-4
                 hover:-translate-y-1
-                hover:border-black
+                hover:border-black dark:hover:border-white
                 hover:shadow-[0_16px_40px_rgba(0,0,0,0.10)]
                 transition-all duration-300
               "
@@ -41,7 +41,7 @@ const Services = () => {
                 <span className="
                   absolute right-0
                   text-xl text-gray-300
-                  group-hover:text-black
+                  group-hover:text-black dark:group-hover:text-white
                   group-hover:translate-x-1 group-hover:-translate-y-1
                   transition-all duration-300
                 ">
@@ -49,19 +49,19 @@ const Services = () => {
                 </span>
               </div>
 
-              <hr className="border-gray-100" />
+              <hr className="border-gray-100 dark:border-gray-800" />
 
-              <h3 className="text-xl font-bold text-black leading-snug">
+              <h3 className="text-xl font-bold text-black dark:text-white leading-snug">
                 {service.title}
               </h3>
 
 
-              <p className="text-gray-500 text-sm leading-6 flex-1">
+              <p className="text-gray-500 dark:text-gray-400 text-sm leading-6 flex-1">
                 {service.description}
               </p>
 
               {service.systems && (
-                <div className="border-t border-gray-100 pt-4">
+                <div className="border-t border-gray-100 dark:border-gray-800 pt-4">
                   <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">
                     Incluye
                   </p>
@@ -69,7 +69,7 @@ const Services = () => {
                     {service.systems.map((system) => (
                       <div
                         key={system}
-                        className="flex items-baseline gap-2 text-sm text-gray-600"
+                        className="flex items-baseline gap-2 text-sm text-gray-600 dark:text-gray-400"
                       >
                         <span className="text-gray-300 shrink-0">—</span>
                         <span>{system}</span>
@@ -80,7 +80,7 @@ const Services = () => {
               )}
 
               {service.extra && (
-                <p className="text-xs text-gray-400 leading-5 border-t border-gray-100 pt-4 italic">
+                <p className="text-xs text-gray-400 leading-5 border-t border-gray-100 dark:border-gray-800 pt-4 italic">
                   {service.extra}
                 </p>
               )}

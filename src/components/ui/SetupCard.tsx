@@ -8,7 +8,7 @@ const SetupCard = ({ item }: SetupCardProps) => {
       <h3
         className={`
           text-sm sm:text-[15px] font-semibold tracking-tight leading-snug transition-colors duration-200
-          ${isAffiliate ? "text-black group-hover:text-gray-700" : "text-gray-700"}
+          ${isAffiliate ? "text-black group-hover:text-gray-700 dark:text-white dark:group-hover:text-gray-300" : "text-gray-700 dark:text-gray-300"}
         `}
       >
         {item.name}
@@ -17,14 +17,14 @@ const SetupCard = ({ item }: SetupCardProps) => {
   );
 
   const affiliateStyle = `
-    group relative bg-white border border-black rounded-2xl overflow-hidden
+    group relative bg-white border border-black rounded-2xl dark:bg-[#161a22] dark:border-gray-400 overflow-hidden
     shadow-sm transition-all duration-200 flex flex-col h-full
-    hover:-translate-y-1 hover:shadow-lg hover:border-gray-800
+    hover:-translate-y-1 hover:shadow-lg hover:border-gray-800 dark:hover:border-white
     w-full sm:w-[280px]
   `;
 
   const normalStyle = `
-    group relative bg-white border border-gray-200 rounded-2xl overflow-hidden
+    group relative bg-white border border-gray-200 rounded-2xl dark:bg-[#161a22] dark:border-gray-800 overflow-hidden
     shadow-sm transition-all duration-200 flex flex-col h-full
     w-full sm:w-[280px]
   `;
@@ -38,7 +38,7 @@ const SetupCard = ({ item }: SetupCardProps) => {
         className={affiliateStyle}
       >
   
-        <div className="h-[2px] w-full bg-black/90" />
+        <div className="h-[2px] w-full bg-black/90 dark:bg-white/80" />
 
         {cardContent}
       </a>
@@ -48,7 +48,7 @@ const SetupCard = ({ item }: SetupCardProps) => {
   return (
     <div className={normalStyle}>
 
-      <div className="h-[2px] w-full bg-gray-200" />
+      <div className="h-[2px] w-full bg-gray-200 dark:bg-gray-800" />
 
       {cardContent}
     </div>
