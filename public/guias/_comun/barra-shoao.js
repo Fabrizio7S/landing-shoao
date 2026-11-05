@@ -17,6 +17,10 @@
  *  - Videos con la forma correcta: muchos .mp4 vienen exportados con una
  *    proporción de píxel errónea (SAR) y el navegador los mostraba aplastados.
  *    Se fuerza la proporción que dice el HTML (width/height del <video>).
+ *  - Menú de secciones en celulares: en dos filas (nombre del boss + idioma
+ *    arriba, secciones abajo deslizables) para que el botón de idioma no tape
+ *    los enlaces. Los enlaces se meten en un <div class="nav-links">; en
+ *    pantallas grandes ese div no cambia nada (display:contents).
  */
 (function () {
   var root = document.documentElement;
@@ -72,7 +76,18 @@
   var CSS_GUIAS =
     "main,.nav-in{max-width:1200px}\n" +
     "main p,main ul,main blockquote,main .callout,main .lead{max-width:80ch}\n" +
-    "figure video{object-fit:fill}\n";
+    "figure video{object-fit:fill}\n" +
+    ".nav-links{display:contents}\n" +
+    "@media (max-width:720px){\n" +
+    "  html{scroll-padding-top:104px}\n" +
+    "  .nav .nav-in{flex-wrap:wrap;overflow:visible;padding:8px 16px 6px;row-gap:6px}\n" +
+    "  .nav .lang{position:static;box-shadow:none;margin-left:auto}\n" +
+    "  .nav .nav-links{order:1;display:flex;flex-basis:100%;gap:2px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 2px;" +
+    "-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent)}\n" +
+    "  .nav .nav-links::-webkit-scrollbar{display:none}\n" +
+    "  .nav .nav-links a{padding:6px 10px;flex:none}\n" +
+    "  .nav .nav-links a:last-child{margin-right:32px}\n" +
+    "}\n";
 
   var t = en
     ? { home: "Shoao, go to home page", back: "← Back<span class=\"long\">&nbsp;to guides</span>", grupo: "Page theme", claro: "Light", oscuro: "Dark" }
@@ -115,8 +130,23 @@
       if (w > 0 && h > 0) vids[i].style.aspectRatio = w + " / " + h;
     }
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", arreglarVideos);
-  else arreglarVideos();
+  // Agrupa los enlaces de secciones del menú de la guía (ver arriba).
+  function agruparMenu() {
+    var nav = document.querySelector(".nav .nav-in");
+    if (!nav || nav.querySelector(".nav-links")) return;
+    var links = [];
+    for (var i = 0; i < nav.children.length; i++) {
+      if (nav.children[i].tagName === "A") links.push(nav.children[i]);
+    }
+    if (!links.length) return;
+    var grupo = document.createElement("div");
+    grupo.className = "nav-links";
+    nav.insertBefore(grupo, links[0]);
+    for (var j = 0; j < links.length; j++) grupo.appendChild(links[j]);
+  }
+  function alCargar() { arreglarVideos(); agruparMenu(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", alCargar);
+  else alCargar();
 
   // 4. Botón Claro | Oscuro.
   var botones = document.querySelectorAll(".site-theme button");
