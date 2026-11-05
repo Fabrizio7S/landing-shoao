@@ -18,8 +18,60 @@ import jupiter from "../assets/Bos/Boss_UI_-_Jupiter.png";
 import will from "../assets/Bos/Boss_UI_-_Will.png";
 import kai from "../assets/Bos/Boss_UI_-_Kai.png";
 import bellona from "../assets/Bos/Boss_UI_-_Bellona.png";
+import maerin from "../assets/Bos/Boss_UI_-_Maerin.png";
 
 export const bossesData: boss[] = [
+  {
+    name: "Maerin",
+    image: maerin,
+  },
+  {
+    name: "Bellona",
+    image: bellona,
+    guideUrl: "/guias/bellona/",
+  },
+  {
+    name: "Jupiter",
+    image: jupiter,
+  },
+  {
+    name: "Malefic Star",
+    image: maleficStar,
+  },
+  {
+    name: "Baldrix",
+    image: baldrix,
+    videoId: "SQD9CW5mQH8",
+  },
+  {
+    name: "Limbo",
+    image: limbo,
+    videoId: "gl0D-_Iyz4I",
+  },
+  {
+    name: "First Adversary",
+    image: firstAdversary,
+    videoId: "MioqDrwyRp8",
+  },
+  {
+  name: "Kaling",
+  image: kaling,
+  videoId: "UoI19DIzeSE",
+  extraVideos: [
+    {
+      title: "Fase 2",
+      videoId: "ankVNbZBaLg",
+    },
+    {
+      title: "Fase 3",
+      videoId: "BgURphDcqnM",
+    },
+  ],
+},
+  {
+    name: "Kalos",
+    image: kalos,
+  },
   {
     name: "Lotus",
     image: lotus,
@@ -66,51 +118,4 @@ export const bossesData: boss[] = [
     image: chosenSeren,
     videoId: "2idD656nFFI",
   },
-  {
-    name: "Kalos",
-    image: kalos,
-  },
-  {
-    name: "First Adversary",
-    image: firstAdversary,
-    videoId: "MioqDrwyRp8",
-  },
-  {
-  name: "Kaling",
-  image: kaling,
-  videoId: "UoI19DIzeSE",
-  extraVideos: [
-    {
-      title: "Fase 2",
-      videoId: "ankVNbZBaLg",
-    },
-    {
-      title: "Fase 3",
-      videoId: "BgURphDcqnM",
-    },
-  ],
-},
-  {
-    name: "Malefic Star",
-    image: maleficStar,
-  },
-  {
-    name: "Limbo",
-    image: limbo,
-    videoId: "gl0D-_Iyz4I",
-  },
-  {
-    name: "Baldrix",
-    image: baldrix,
-    videoId: "SQD9CW5mQH8",
-  },
-  {
-    name: "Jupiter",
-    image: jupiter,
-  },
-  {
-    name: "Bellona",
-    image: bellona,
-    guideUrl: "/guias/bellona/",
-  },
-]
+];
