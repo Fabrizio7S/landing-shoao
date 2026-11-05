@@ -1,49 +1,88 @@
-# Estructura del Código Fuente (`src/`)
+# Shoao — shoaomaple.com
 
-Este documento detalla el propósito de cada una de las carpetas dentro de `src/` para mantener la organización y buenas prácticas en el proyecto.
+Landing de Shoao (MapleStory): guías de bosses, servicios, videos y setup.
+Hecha con React + Vite + Tailwind. Hosting en Vercel, dominio en GoDaddy.
 
-## Carpetas Principales
+## Comandos
 
-### 📂 `assets/`
-Contiene todos los recursos estáticos del proyecto que son importados directamente por los archivos de código (procesados por Vite).
-* 📁 `images/`: Logotipos, fotografías e imágenes generales (.png, .jpg, .webp).
-* 📁 `icons/`: Iconos en formato SVG o componentes de iconos reutilizables.
+```bash
+npm install       # instalar dependencias (solo la primera vez)
+npm run dev       # servidor local en http://localhost:5173
+npm run build     # compilar para producción (lo mismo que hace Vercel)
+npm run lint      # revisar el código
+```
 
-### 📂 `components/`
-Contiene todos los componentes de React. Está dividido de forma jerárquica para mantener la reutilización y el orden:
-* 📁 `ui/`: Componentes atómicos o básicos muy reutilizables que no tienen lógica compleja de negocio (ej. `Button.tsx`, `Card.tsx`, `Input.tsx`).
-* 📁 `layout/`: Estructuras fijas y compartidas de la página (ej. `Navbar.tsx`, `Footer.tsx`).
-* 📁 `sections/`: Secciones principales y específicas de la landing page (ej. `Hero.tsx`, `Videos.tsx`).
+## Estructura
 
-### 📂 `pages/`
-Contiene las páginas o vistas completas del sitio web (rutas). Actúan como contenedores que importan y organizan los diferentes componentes de la sección `components/`.
-* 📁 `Home.tsx`: La página de inicio principal (renderiza las secciones de Hero y Videos).
-* 📁 `Setup.tsx`: La página de equipamiento técnico y periféricos con enlaces de afiliados.
+```
+landing-shoao/
+├── index.html              Página base de React (título, SEO, favicon)
+├── vercel.json             Config de Vercel (rutas de React como /setup)
+├── vite.config.ts          Config de Vite (+ sirve /guias/<boss>/ en local)
+├── public/                 Se publica TAL CUAL, sin procesar
+│   ├── favicon.png         Icono de la pestaña
+│   └── guias/              Guías de bosses (páginas HTML independientes)
+│       ├── _comun/         Lo que comparten todas las guías
+│       │   ├── barra-shoao.js   Barra superior con logo y "Volver a guías"
+│       │   └── shoao-logo.png
+│       ├── bellona/        → shoaomaple.com/guias/bellona/
+│       └── maerin/         → shoaomaple.com/guias/maerin/
+└── src/                    Código de React
+    ├── main.tsx            Punto de entrada
+    ├── App.tsx             Rutas (/ y /setup) + Navbar y Footer
+    ├── index.css           Estilos globales y Tailwind
+    ├── assets/images/
+    │   ├── brand/          Logos de Shoao
+    │   ├── home/           Imágenes de la portada (Hero)
+    │   └── bosses/         Tarjetas de bosses (422×500, nombre-en-minusculas.png)
+    ├── components/
+    │   ├── layout/         Navbar, Footer
+    │   ├── sections/       Secciones de la home: Hero, Bosses, Services, Videos
+    │   └── ui/             Piezas reutilizables: BossCard, VideoCard, SetupCard
+    ├── data/               CONTENIDO editable: bosses, services, setup, videos
+    ├── pages/              Páginas completas: Home, Setup
+    ├── types/              Tipos de TypeScript: Boss, Service, Setup, Video
+    ├── hooks/              Custom hooks (vacío por ahora)
+    └── utils/              Funciones auxiliares (vacío por ahora)
+```
 
-### 📂 `hooks/`
-Espacio dedicado para almacenar tus **Custom Hooks** de React (funciones personalizadas que encapsulan lógica del ciclo de vida y estado de React, ej. `useScroll.ts`, `useWindowSize.ts`).
+**Regla general:** para cambiar *contenido* (bosses, videos, servicios, setup) solo
+se edita `src/data/`. Los componentes solo se tocan para cambiar el *diseño*.
 
-### 📂 `utils/`
-Contiene funciones helper o utilitarias independientes de React. Son funciones puras que realizan cálculos, formateos o validaciones comunes (ej. formateadores de fechas, validadores de formularios).
+## Cómo agregar o actualizar cosas
 
-### 📂 `data/`
-Almacena archivos de datos estáticos o de simulación (mock data) de la aplicación (ej. `videos.ts`), ayudando a separar el contenido y la información del diseño visual de los componentes.
+### Un boss nuevo (tarjeta)
+1. Guarda su imagen en `src/assets/images/bosses/` con nombre en minúsculas y guiones
+   (ej. `nuevo-boss.png`, 422×500 como las demás).
+2. En `src/data/bosses.ts` impórtala y agrega `{ name, image }` en la posición que quieras.
+   Sin `videoId` ni `guideUrl` sale en gris con "Próximamente".
 
-### 📂 `types/`
-Carpeta destinada a declarar las interfaces y tipos de TypeScript de uso compartido en toda la aplicación (ej. `Video.ts`), lo cual asegura la integridad y consistencia del código.
+### Que una tarjeta abra un video de YouTube
+Agrega `videoId: "ID_DEL_VIDEO"` (lo que va después de `watch?v=`).
 
----
+### Una guía nueva (HTML)
+1. Copia la carpeta de la guía a `public/guias/<boss>/` (en minúsculas, sin espacios).
+   Dentro debe estar su `index.html` y sus carpetas de imágenes (`m/`, `p/`…) sin cambiarles el nombre.
+2. En su `index.html`, justo después de `<body>`, añade:
+   ```html
+   <script src="/guias/_comun/barra-shoao.js"></script>
+   ```
+3. En `src/data/bosses.ts`, en ese boss, agrega `guideUrl: "/guias/<boss>/"` (con la barra final).
 
-## Archivos Principales en Raíz
+### Actualizar una guía existente
+Reemplaza el contenido de `public/guias/<boss>/` por la versión nueva y vuelve a
+añadir la línea del paso 2. La dirección y la tarjeta no cambian.
 
-* 📄 `App.tsx`: Componente principal que orquesta y renderiza las diferentes secciones de la landing page.
-* 📄 `main.tsx`: Punto de entrada de la aplicación de React donde se monta el árbol de componentes en el DOM.
-* 📄 `index.css`: Archivo de estilos CSS global (aquí se configuran Tailwind CSS y estilos base).
+## Publicar
 
----
+```bash
+git add -A
+git commit -m "descripción del cambio"
+git push origin main
+```
+Vercel despliega solo al recibir el push en `main`.
 
-## Sistema de Diseño y Tipografías
+## Diseño y tipografías
 
-El proyecto utiliza un sistema tipográfico **Tech-Minimalist** limpio y optimizado para pantallas:
-* **Títulos (Headings):** `Outfit` (fuente geométrica sans-serif moderna, ideal para títulos impactantes y secciones de productos/setup).
-* **Cuerpo de texto (Body):** `Inter` (fuente sans-serif de alta legibilidad en pantallas, inspirada en aliabdaal.com).
+* **Títulos:** `Outfit` (sans-serif geométrica).
+* **Texto:** `Inter` (alta legibilidad en pantalla).

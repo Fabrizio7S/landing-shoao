@@ -1,8 +1,8 @@
-import type { boss } from "../../types/Boss";
+import type { Boss } from "../../types/Boss";
 
 interface BossCardProps {
-  boss: boss;
-  onClick?: (boss: boss) => void;
+  boss: Boss;
+  onClick?: (boss: Boss) => void;
 }
 
 const BossCard = ({ boss, onClick }: BossCardProps) => {

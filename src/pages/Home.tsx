@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Bosses from "../components/sections/Bosses";
 import Hero from "../components/sections/Hero";
-import Services from "../components/sections/services";
+import Services from "../components/sections/Services";
 import Videos from "../components/sections/Videos";
 
 const Home = () => {

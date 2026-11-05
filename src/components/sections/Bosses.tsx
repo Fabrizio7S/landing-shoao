@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { bossesData } from "../../data/boss";
+import { bossesData } from "../../data/bosses";
 import BossCard from "../ui/BossCard";
-import type { boss } from "../../types/Boss";
+import type { Boss } from "../../types/Boss";
 
 const Bosses = () => {
-  const [selectedBoss, setSelectedBoss] = useState<boss | null>(null);
+  const [selectedBoss, setSelectedBoss] = useState<Boss | null>(null);
 
-  const openBossGuide = (boss: boss) => {
+  const openBossGuide = (boss: Boss) => {
     if (boss.guideUrl) {
       window.location.href = boss.guideUrl;
       return;

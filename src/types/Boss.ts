@@ -1,4 +1,4 @@
-export interface boss {
+export interface Boss {
   name: string;
   image: string;
   videoId?: string;

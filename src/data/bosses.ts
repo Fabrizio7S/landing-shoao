@@ -1,26 +1,26 @@
-import type { boss } from "../types/Boss";
-import lotus from "../assets/Bos/Boss_UI_-_Lotus.png";
-import damien from "../assets/Bos/Boss_UI_-_Damien.png";
-import guardianAngelSlime from "../assets/Bos/Boss_UI_-_Guardian_Angel_Slime.png";
-import firstAdversary from "../assets/Bos/Boss_UI_-_First_Adversary.png";
-import lucid from "../assets/Bos/Boss_UI_-_Lucid.png";
-import giantMonsterGloom from "../assets/Bos/Boss_UI_-_Giant_Monster_Gloom.png";
-import verusHilla from "../assets/Bos/Boss_UI_-_Verus_Hilla.png";
-import guardCaptainDarknell from "../assets/Bos/Boss_UI_-_Guard_Captain_Darknell.png";
-import blackMage from "../assets/Bos/Boss_UI_-_Black_Mage.png";
-import chosenSeren from "../assets/Bos/Boss_UI_-_Chosen_Seren.png";
-import kalos from "../assets/Bos/Boss_UI_-_Kalos_the_Guardian.png";
-import kaling from "../assets/Bos/Boss_UI_-_Kaling.png";
-import maleficStar from "../assets/Bos/Boss_UI_-_Malefic_Star.png";
-import limbo from "../assets/Bos/Boss_UI_-_Limbo.png";
-import baldrix from "../assets/Bos/Boss_UI_-_Baldrix.png";
-import jupiter from "../assets/Bos/Boss_UI_-_Jupiter.png";
-import will from "../assets/Bos/Boss_UI_-_Will.png";
-import kai from "../assets/Bos/Boss_UI_-_Kai.png";
-import bellona from "../assets/Bos/Boss_UI_-_Bellona.png";
-import maerin from "../assets/Bos/Boss_UI_-_Maerin.png";
+import type { Boss } from "../types/Boss";
+import lotus from "../assets/images/bosses/lotus.png";
+import damien from "../assets/images/bosses/damien.png";
+import guardianAngelSlime from "../assets/images/bosses/guardian-angel-slime.png";
+import firstAdversary from "../assets/images/bosses/first-adversary.png";
+import lucid from "../assets/images/bosses/lucid.png";
+import giantMonsterGloom from "../assets/images/bosses/gloom.png";
+import verusHilla from "../assets/images/bosses/verus-hilla.png";
+import guardCaptainDarknell from "../assets/images/bosses/darknell.png";
+import blackMage from "../assets/images/bosses/black-mage.png";
+import chosenSeren from "../assets/images/bosses/chosen-seren.png";
+import kalos from "../assets/images/bosses/kalos.png";
+import kaling from "../assets/images/bosses/kaling.png";
+import maleficStar from "../assets/images/bosses/malefic-star.png";
+import limbo from "../assets/images/bosses/limbo.png";
+import baldrix from "../assets/images/bosses/baldrix.png";
+import jupiter from "../assets/images/bosses/jupiter.png";
+import will from "../assets/images/bosses/will.png";
+import kai from "../assets/images/bosses/kai.png";
+import bellona from "../assets/images/bosses/bellona.png";
+import maerin from "../assets/images/bosses/maerin.png";
 
-export const bossesData: boss[] = [
+export const bossesData: Boss[] = [
   {
     name: "Maerin",
     image: maerin,

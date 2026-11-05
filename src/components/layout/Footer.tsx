@@ -1,4 +1,4 @@
-import logo from "../../assets/shoao_v1.png";
+import logo from "../../assets/images/brand/shoao-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
