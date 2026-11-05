@@ -4,6 +4,7 @@
  *   <script src="/guias/_comun/barra-shoao.js"></script>
  * Si cambias el logo o el diseño aquí, se actualiza en todas las guías.
  * En páginas con <html lang="en"> muestra los textos en inglés.
+ * También pone el icono de la pestaña (/favicon.png) si la página no tiene uno.
  */
 (function () {
   var css = ".site{background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.06)}\n.site-in{max-width:1280px;margin:0 auto;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px}\n.site-logo{display:block;line-height:0}\n.site-logo img{height:48px;width:auto;object-fit:contain}\n.site-back{display:inline-block;white-space:nowrap;text-decoration:none;color:var(--ink);font-size:16px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line)}\n.site-back:hover{background:var(--bg)}\n@media (max-width:640px){\n  .site-in{padding:12px 16px}\n  .site-logo img{height:40px}\n  .site-back{font-size:14px;padding:6px 12px}\n  .site-back .long{display:none}\n}\n";
@@ -13,6 +14,14 @@
     html = html
       .replace("Shoao, ir al inicio", "Shoao, go to home page")
       .replace("← Volver<span class=\"long\">&nbsp;a guías</span>", "← Back<span class=\"long\">&nbsp;to guides</span>");
+  }
+  // Icono de la pestaña (el mismo de la página principal) si la guía no trae uno.
+  if (!document.querySelector('link[rel~="icon"]')) {
+    var icon = document.createElement("link");
+    icon.rel = "icon";
+    icon.type = "image/png";
+    icon.href = "/favicon.png";
+    document.head.appendChild(icon);
   }
   var style = document.createElement("style");
   style.textContent = css;
