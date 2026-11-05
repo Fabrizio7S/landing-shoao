@@ -17,6 +17,7 @@ import baldrix from "../assets/Bos/Boss_UI_-_Baldrix.png";
 import jupiter from "../assets/Bos/Boss_UI_-_Jupiter.png";
 import will from "../assets/Bos/Boss_UI_-_Will.png";
 import kai from "../assets/Bos/Boss_UI_-_Kai.png";
+import bellona from "../assets/Bos/Boss_UI_-_Bellona.png";
 
 export const bossesData: boss[] = [
   {
@@ -106,5 +107,10 @@ export const bossesData: boss[] = [
   {
     name: "Jupiter",
     image: jupiter,
+  },
+  {
+    name: "Bellona",
+    image: bellona,
+    guideUrl: "/guias/bellona/",
   },
 ]

@@ -7,6 +7,11 @@ const Bosses = () => {
   const [selectedBoss, setSelectedBoss] = useState<boss | null>(null);
 
   const openBossGuide = (boss: boss) => {
+    if (boss.guideUrl) {
+      window.location.href = boss.guideUrl;
+      return;
+    }
+
     if (boss.extraVideos?.length) {
       setSelectedBoss(boss);
       return;

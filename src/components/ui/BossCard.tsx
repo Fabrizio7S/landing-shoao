@@ -6,7 +6,7 @@ interface BossCardProps {
 }
 
 const BossCard = ({ boss, onClick }: BossCardProps) => {
-  const hasGuide = Boolean(boss.videoId);
+  const hasGuide = Boolean(boss.videoId || boss.guideUrl);
 
   return (
     <div
