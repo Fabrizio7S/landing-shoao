@@ -10,6 +10,13 @@
  * principal (localStorage "tema") y, si nunca eligió, el modo del sistema.
  * Los colores oscuros de la guía se cambian aquí abajo (CSS_OSCURO) sin
  * tocar el HTML de la guía: las guías usan variables (--bg, --ink, ...).
+ *
+ * Ajustes de diseño para todas las guías (CSS_GUIAS):
+ *  - Contenido más ancho (1200 px en vez de 960 px) para que no quede tanto
+ *    espacio vacío a los lados en pantallas grandes.
+ *  - Videos con la forma correcta: muchos .mp4 vienen exportados con una
+ *    proporción de píxel errónea (SAR) y el navegador los mostraba aplastados.
+ *    Se fuerza la proporción que dice el HTML (width/height del <video>).
  */
 (function () {
   var root = document.documentElement;
@@ -61,6 +68,12 @@
     "html.dark th{background:#1b1f28}\n" +
     "html.dark .verify::after{background:#262b36}\n";
 
+  // 3. Ajustes de diseño para las guías (ver arriba).
+  var CSS_GUIAS =
+    "main,.nav-in{max-width:1200px}\n" +
+    "main p,main ul,main blockquote,main .callout,main .lead{max-width:80ch}\n" +
+    "figure video{object-fit:fill}\n";
+
   var t = en
     ? { home: "Shoao, go to home page", back: "← Back<span class=\"long\">&nbsp;to guides</span>", grupo: "Page theme", claro: "Light", oscuro: "Dark" }
     : { home: "Shoao, ir al inicio", back: "← Volver<span class=\"long\">&nbsp;a guías</span>", grupo: "Tema de la página", claro: "Claro", oscuro: "Oscuro" };
@@ -88,13 +101,24 @@
     document.head.appendChild(icon);
   }
   var style = document.createElement("style");
-  style.textContent = css + CSS_OSCURO;
+  style.textContent = css + CSS_OSCURO + CSS_GUIAS;
   document.head.appendChild(style);
   var me = document.currentScript;
   if (me) { me.insertAdjacentHTML("afterend", html); }
   else { document.body.insertAdjacentHTML("afterbegin", html); }
 
-  // 3. Botón Claro | Oscuro.
+  // Proporción real de cada video, tomada de width/height del HTML.
+  function arreglarVideos() {
+    var vids = document.querySelectorAll("figure video[width][height]");
+    for (var i = 0; i < vids.length; i++) {
+      var w = +vids[i].getAttribute("width"), h = +vids[i].getAttribute("height");
+      if (w > 0 && h > 0) vids[i].style.aspectRatio = w + " / " + h;
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", arreglarVideos);
+  else arreglarVideos();
+
+  // 4. Botón Claro | Oscuro.
   var botones = document.querySelectorAll(".site-theme button");
   function marcar() {
     var oscuro = root.classList.contains("dark");
