@@ -1,6 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/guias/maerin/:path*",
+      "destination": "/guias/mayrin/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/((?!api/|guias/|assets/).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!api/|guias/|assets/).*)",
+      "destination": "/index.html"
+    }
   ]
 }

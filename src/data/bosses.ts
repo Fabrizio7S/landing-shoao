@@ -18,13 +18,13 @@ import jupiter from "../assets/images/bosses/jupiter.png";
 import will from "../assets/images/bosses/will.png";
 import kai from "../assets/images/bosses/kai.png";
 import bellona from "../assets/images/bosses/bellona.png";
-import maerin from "../assets/images/bosses/maerin.png";
+import mayrin from "../assets/images/bosses/mayrin.png";
 
 export const bossesData: Boss[] = [
   {
-    name: "Maerin",
-    image: maerin,
-    guideUrl: "/guias/maerin/",
+    name: "Mayrin",
+    image: mayrin,
+    guideUrl: "/guias/mayrin/",
   },
   {
     name: "Bellona",

@@ -26,7 +26,7 @@ landing-shoao/
 │       │   ├── barra-shoao.js   Barra superior con logo y "Volver a guías"
 │       │   └── shoao-logo.png
 │       ├── bellona/        → shoaomaple.com/guias/bellona/
-│       └── maerin/         → shoaomaple.com/guias/maerin/
+│       └── mayrin/         → shoaomaple.com/guias/mayrin/
 └── src/                    Código de React
     ├── main.tsx            Punto de entrada
     ├── App.tsx             Rutas (/ y /setup) + Navbar y Footer
