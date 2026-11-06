@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Lista de páginas para Google. Al agregar una guía nueva, copia uno de los
+  bloques <url> de una guía y cambia el nombre del boss (versión ES y EN).
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.shoaomaple.com/</loc>
+  </url>
+  <url>
+    <loc>https://www.shoaomaple.com/setup</loc>
+  </url>
+
+  <!-- Mayrin -->
+  <url>
+    <loc>https://www.shoaomaple.com/guias/mayrin/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/mayrin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/mayrin/en.html"/>
+  </url>
+  <url>
+    <loc>https://www.shoaomaple.com/guias/mayrin/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/mayrin/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/mayrin/en.html"/>
+  </url>
+
+  <!-- Bellona -->
+  <url>
+    <loc>https://www.shoaomaple.com/guias/bellona/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/bellona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/bellona/en.html"/>
+  </url>
+  <url>
+    <loc>https://www.shoaomaple.com/guias/bellona/en.html</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/bellona/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/bellona/en.html"/>
+  </url>
+</urlset>

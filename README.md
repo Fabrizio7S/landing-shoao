@@ -1,4 +1,4 @@
-# Shoao — shoaomaple.com
+# Shoao — www.shoaomaple.com
 
 Landing de Shoao (MapleStory): guías de bosses, servicios, videos y setup.
 Hecha con React + Vite + Tailwind. Hosting en Vercel, dominio en GoDaddy.
@@ -21,6 +21,8 @@ landing-shoao/
 ├── vite.config.ts          Config de Vite (+ sirve /guias/<boss>/ en local)
 ├── public/                 Se publica TAL CUAL, sin procesar
 │   ├── favicon.png         Icono de la pestaña
+│   ├── robots.txt          Permiso para Google + dónde está el sitemap
+│   ├── sitemap.xml         Lista de páginas para Google (agregar cada guía nueva)
 │   └── guias/              Guías de bosses (páginas HTML independientes)
 │       ├── _comun/         Lo que comparten todas las guías
 │       │   ├── barra-shoao.js   Barra superior: logo, "Volver a guías" y modo Claro | Oscuro
@@ -69,6 +71,8 @@ Agrega `videoId: "ID_DEL_VIDEO"` (lo que va después de `watch?v=`).
    <script src="/guias/_comun/barra-shoao.js"></script>
    ```
 3. En `src/data/bosses.ts`, en ese boss, agrega `guideUrl: "/guias/<boss>/"` (con la barra final).
+4. En `public/sitemap.xml` copia los dos bloques `<url>` de otra guía y cambia el nombre
+   del boss, para que Google la encuentre. Luego, en Google Search Console, pide su indexación.
 
 ### Actualizar una guía existente
 Reemplaza el contenido de `public/guias/<boss>/` por la versión nueva y vuelve a

@@ -144,7 +144,34 @@
     nav.insertBefore(grupo, links[0]);
     for (var j = 0; j < links.length; j++) grupo.appendChild(links[j]);
   }
-  function alCargar() { arreglarVideos(); agruparMenu(); }
+  // Datos para Google (título, descripción y dirección oficial). Se ponen aquí
+  // para no tener que editar el HTML cada vez que llega una versión nueva de una guía.
+  function datosGoogle() {
+    var head = document.head;
+    if (document.title && !/maplestory/i.test(document.title)) {
+      document.title = document.title + (en ? " – MapleStory | Shoao" : " – MapleStory en español | Shoao");
+    }
+    if (!head.querySelector('meta[name="description"]')) {
+      // El párrafo de introducción (".lead"); si no hay, el primer párrafo normal.
+      var lead = document.querySelector(".hero .lead") || document.querySelector("main .lead") ||
+        document.querySelector("main p:not(.eyebrow)");
+      var texto = lead ? lead.textContent.replace(/\s+/g, " ").trim() : "";
+      if (texto) {
+        if (texto.length > 160) texto = texto.slice(0, 157).replace(/\s+\S*$/, "") + "…";
+        var meta = document.createElement("meta");
+        meta.name = "description";
+        meta.content = texto;
+        head.appendChild(meta);
+      }
+    }
+    if (!head.querySelector('link[rel="canonical"]')) {
+      var canon = document.createElement("link");
+      canon.rel = "canonical";
+      canon.href = "https://www.shoaomaple.com" + location.pathname.replace(/index\.html$/, "");
+      head.appendChild(canon);
+    }
+  }
+  function alCargar() { arreglarVideos(); agruparMenu(); datosGoogle(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", alCargar);
   else alCargar();
 

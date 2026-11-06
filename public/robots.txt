@@ -1,0 +1,6 @@
+# Permite a Google (y a otros buscadores) leer toda la web.
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://www.shoaomaple.com/sitemap.xml
