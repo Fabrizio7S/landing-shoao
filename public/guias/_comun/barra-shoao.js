@@ -157,7 +157,7 @@
   function datosGoogle() {
     var head = document.head;
     if (document.title && !/maplestory/i.test(document.title)) {
-      document.title = document.title + (en ? " – MapleStory | Shoao" : " – MapleStory en español | Shoao");
+      document.title = document.title + (en ? " – MapleStory GMS | Shoao" : " – MapleStory GMS en español | Shoao");
     }
     if (!head.querySelector('meta[name="description"]')) {
       // El párrafo de introducción (".lead"); si no hay, el primer párrafo normal.

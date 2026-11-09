@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { videosData } from "../../data/videos";
 import type { Video } from "../../types/Video";
 import VideoCard from "../ui/VideoCard";
+import { YOUTUBE_URL } from "../../data/socials";
 
 interface ApiVideo {
   id: string;
@@ -87,7 +88,7 @@ const Videos = () => {
         {/* Botón/Enlace al canal al final de la sección */}
         <div className="mt-16 flex justify-center">
           <a
-            href="https://www.youtube.com/@xShoao/videos"
+            href={`${YOUTUBE_URL}/videos`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-lg font-semibold text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors group"
