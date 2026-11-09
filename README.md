@@ -18,7 +18,8 @@ npm run lint      # revisar el código
 landing-shoao/
 ├── index.html              Página base de React (título, SEO, favicon)
 ├── vercel.json             Config de Vercel (rutas de React como /setup)
-├── vite.config.ts          Config de Vite (+ sirve /guias/<boss>/ en local)
+├── vite.config.ts          Config de Vite (+ sirve /guias/<boss>/ y /api en local)
+├── api/                    Funciones de Vercel: videos.ts (YouTube), vistas.ts (contador)
 ├── public/                 Se publica TAL CUAL, sin procesar
 │   ├── favicon.png         Icono de la pestaña
 │   ├── robots.txt          Permiso para Google + dónde está el sitemap
@@ -77,6 +78,17 @@ Agrega `videoId: "ID_DEL_VIDEO"` (lo que va después de `watch?v=`).
 ### Actualizar una guía existente
 Reemplaza el contenido de `public/guias/<boss>/` por la versión nueva y vuelve a
 añadir la línea del paso 2. La dirección y la tarjeta no cambian.
+
+## Contador de visitas de las guías
+
+Cada guía muestra debajo del nombre del boss "N personas viendo ahora" y "N visitas"
+(sale solo, no hay que hacer nada al agregar una guía nueva).
+
+* Lo pinta `public/guias/_comun/barra-shoao.js` y lo guarda la función `api/vistas.ts`.
+* Los datos están en **Upstash Redis**, conectado desde Vercel → Storage.
+  Sin esa conexión la web funciona igual, pero el contador no aparece.
+* Una visita cuenta 1 vez cada 12 h por navegador. Español e inglés suman juntas.
+* En local (`npm run dev`) se guarda en memoria y se reinicia al parar el servidor.
 
 ## Publicar
 

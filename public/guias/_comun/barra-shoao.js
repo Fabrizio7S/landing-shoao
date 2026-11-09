@@ -87,7 +87,15 @@
     "  .nav .nav-links::-webkit-scrollbar{display:none}\n" +
     "  .nav .nav-links a{padding:6px 10px;flex:none}\n" +
     "  .nav .nav-links a:last-child{margin-right:32px}\n" +
-    "}\n";
+    "}\n" +
+    // Contador de visitas / viendo ahora (debajo del nombre del boss).
+    ".site-stats{display:flex;flex-wrap:wrap;gap:8px;margin:0}\n" +
+    ".site-stats[hidden]{display:none}\n" +
+    ".site-stats span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--steel);" +
+    "background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}\n" +
+    ".site-stats .vivo i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:site-pulso 2s infinite}\n" +
+    "@keyframes site-pulso{70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}\n" +
+    "@media (prefers-reduced-motion:reduce){.site-stats .vivo i{animation:none}}\n";
 
   var t = en
     ? { home: "Shoao, go to home page", back: "← Back<span class=\"long\">&nbsp;to guides</span>", grupo: "Page theme", claro: "Light", oscuro: "Dark" }
@@ -171,7 +179,70 @@
       head.appendChild(canon);
     }
   }
-  function alCargar() { arreglarVideos(); agruparMenu(); datosGoogle(); }
+  // Contador: visitas totales de la guía y personas viéndola ahora (api/vistas.ts).
+  // - Una visita se cuenta una sola vez cada 12 h por navegador.
+  // - Mientras la guía está abierta y visible avisa cada 30 s que sigue "viendo".
+  // - Si la API no responde (p. ej. falta la base de datos) no se muestra nada.
+  function contador() {
+    var partes = location.pathname.split("/");
+    var guia = partes[1] === "guias" ? partes[2] : "";
+    var hero = document.querySelector(".hero h1") || document.querySelector("main h1");
+    if (!guia || !/^[a-z0-9-]{1,40}$/.test(guia) || !hero || !window.fetch) return;
+
+    var sesion = window.crypto && crypto.randomUUID
+      ? crypto.randomUUID()
+      : Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 12);
+    var nueva = true;
+    try {
+      var ultima = +localStorage.getItem("visita:" + guia) || 0;
+      nueva = Date.now() - ultima > 12 * 3600 * 1000;
+      if (nueva) localStorage.setItem("visita:" + guia, String(Date.now()));
+    } catch (e) {}
+
+    var caja = document.createElement("p");
+    caja.className = "site-stats";
+    caja.hidden = true;
+    caja.setAttribute("aria-live", "polite");
+    caja.innerHTML = "<span class=\"vivo\"><i aria-hidden=\"true\"></i><b></b></span><span class=\"total\"><b></b></span>";
+    hero.insertAdjacentElement("afterend", caja);
+    var formato = new Intl.NumberFormat(en ? "en-US" : "es-PE");
+
+    function pintar(d) {
+      var v = Math.max(1, d.viendo), n = d.visitas;
+      caja.querySelector(".vivo b").textContent = en
+        ? formato.format(v) + (v === 1 ? " person viewing now" : " people viewing now")
+        : formato.format(v) + (v === 1 ? " persona viendo ahora" : " personas viendo ahora");
+      caja.querySelector(".total b").textContent = en
+        ? "👁 " + formato.format(n) + (n === 1 ? " view" : " views")
+        : "👁 " + formato.format(n) + (n === 1 ? " visita" : " visitas");
+      caja.hidden = false;
+    }
+    function avisar() {
+      var cuerpo = JSON.stringify({ guia: guia, sesion: sesion, nueva: nueva });
+      nueva = false;
+      fetch("/api/vistas", { method: "POST", body: cuerpo, keepalive: true })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && typeof d.visitas === "number") pintar(d); })
+        .catch(function () {});
+    }
+    function salir() {
+      var cuerpo = JSON.stringify({ guia: guia, sesion: sesion, salir: true });
+      if (navigator.sendBeacon) navigator.sendBeacon("/api/vistas", cuerpo);
+    }
+
+    var timer = null;
+    function empezar() { if (!timer) { avisar(); timer = setInterval(avisar, 30000); } }
+    function parar() { if (timer) { clearInterval(timer); timer = null; salir(); } }
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") empezar(); else parar();
+    });
+    window.addEventListener("pagehide", parar);
+    window.addEventListener("pageshow", function (e) { if (e.persisted) empezar(); });
+    // La primera visita se cuenta aunque la pestaña se abra en segundo plano.
+    if (document.visibilityState === "visible") empezar(); else avisar();
+  }
+
+  function alCargar() { arreglarVideos(); agruparMenu(); datosGoogle(); contador(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", alCargar);
   else alCargar();
 
