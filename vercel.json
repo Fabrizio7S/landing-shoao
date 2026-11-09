@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/guias/maerin/",
+      "destination": "/guias/mayrin/",
+      "permanent": true
+    },
+    {
       "source": "/guias/maerin/:path*",
       "destination": "/guias/mayrin/:path*",
       "permanent": true
