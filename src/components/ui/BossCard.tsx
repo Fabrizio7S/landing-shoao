@@ -18,6 +18,10 @@ const BossCard = ({ boss, onClick }: BossCardProps) => {
       <img
         src={boss.image}
         alt={boss.name}
+        width={422}
+        height={500}
+        loading="lazy"
+        decoding="async"
         className={`w-full h-full object-cover transition-all duration-300 ${
           hasGuide
             ? "brightness-125 saturate-150 contrast-110"

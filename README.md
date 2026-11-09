@@ -38,7 +38,7 @@ landing-shoao/
     ├── assets/images/
     │   ├── brand/          Logos de Shoao
     │   ├── home/           Imágenes de la portada (Hero)
-    │   └── bosses/         Tarjetas de bosses (422×500, nombre-en-minusculas.png)
+    │   └── bosses/         Tarjetas de bosses (422×500, nombre-en-minusculas.webp)
     ├── components/
     │   ├── layout/         Navbar, Footer
     │   ├── sections/       Secciones de la home: Hero, Bosses, Services, Videos
@@ -57,7 +57,7 @@ se edita `src/data/`. Los componentes solo se tocan para cambiar el *diseño*.
 
 ### Un boss nuevo (tarjeta)
 1. Guarda su imagen en `src/assets/images/bosses/` con nombre en minúsculas y guiones
-   (ej. `nuevo-boss.png`, 422×500 como las demás).
+   (ej. `nuevo-boss.webp`, 422×500 como las demás; en formato WebP pesa ~10 veces menos que PNG).
 2. En `src/data/bosses.ts` impórtala y agrega `{ name, image }` en la posición que quieras.
    Sin `videoId` ni `guideUrl` sale en gris con "Próximamente".
 

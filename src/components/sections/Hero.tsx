@@ -1,4 +1,4 @@
-import imagen from "../../assets/images/home/hero-jhohao.jpg";
+import imagen from "../../assets/images/home/hero-jhohao.webp";
 
 const Hero = () => {
   return (
@@ -13,7 +13,10 @@ const Hero = () => {
             <img
               src={imagen}
               alt="Jhohao"
-              className="w-80 h-80 lg:w-[450px] lg:h-[450px] object-cover rounded-full"
+              width={900}
+              height={900}
+              fetchPriority="high"
+              className="w-80 lg:w-[450px] max-w-full h-auto aspect-square object-cover rounded-full"
             />
           </div>
         </div>
