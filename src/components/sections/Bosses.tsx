@@ -7,11 +7,7 @@ const Bosses = () => {
   const [selectedBoss, setSelectedBoss] = useState<Boss | null>(null);
 
   const openBossGuide = (boss: Boss) => {
-    if (boss.guideUrl) {
-      window.location.href = boss.guideUrl;
-      return;
-    }
-
+    // Las guías escritas (guideUrl) son enlaces normales dentro de BossCard.
     if (boss.extraVideos?.length) {
       setSelectedBoss(boss);
       return;

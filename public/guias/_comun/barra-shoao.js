@@ -178,6 +178,44 @@
       canon.href = "https://www.shoaomaple.com" + location.pathname.replace(/index\.html$/, "");
       head.appendChild(canon);
     }
+    // Ficha para Google: esta página es un artículo (guía) escrito por Shoao.
+    if (!head.querySelector('script[type="application/ld+json"]')) {
+      var base = "https://www.shoaomaple.com";
+      var url = base + location.pathname.replace(/index\.html$/, "");
+      var h1 = document.querySelector(".hero h1, main h1");
+      var nombre = h1 ? h1.textContent.trim() : "";
+      var desc = head.querySelector('meta[name="description"]');
+      var img = document.querySelector("main figure img");
+      var ficha = {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "headline": en ? nombre + " Guide – MapleStory GMS" : "Guía de " + nombre + " – MapleStory GMS",
+            "description": desc ? desc.content : "",
+            "inLanguage": en ? "en" : "es",
+            "url": url,
+            "mainEntityOfPage": url,
+            "image": img ? new URL(img.getAttribute("src"), location.href).href.replace(location.origin, base) : undefined,
+            "about": { "@type": "VideoGame", "name": "MapleStory" },
+            "author": { "@type": "Person", "@id": base + "/#shoao", "name": "Shoao", "url": base + "/" },
+            "publisher": { "@type": "Person", "@id": base + "/#shoao", "name": "Shoao" }
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Shoao", "item": base + "/" },
+              { "@type": "ListItem", "position": 2, "name": en ? "Boss guides" : "Guías de bosses", "item": base + "/#bosses" },
+              { "@type": "ListItem", "position": 3, "name": nombre, "item": url }
+            ]
+          }
+        ]
+      };
+      var ld = document.createElement("script");
+      ld.type = "application/ld+json";
+      ld.textContent = JSON.stringify(ficha);
+      head.appendChild(ld);
+    }
   }
   // Contador: visitas totales de la guía y personas viéndola ahora (api/vistas.ts).
   // - Una visita se cuenta una sola vez cada 12 h por navegador.

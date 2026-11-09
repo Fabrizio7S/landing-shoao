@@ -7,14 +7,12 @@ interface BossCardProps {
 
 const BossCard = ({ boss, onClick }: BossCardProps) => {
   const hasGuide = Boolean(boss.videoId || boss.guideUrl);
+  const className = `block relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 ${
+    hasGuide ? "cursor-pointer hover:scale-105" : ""
+  }`;
 
-  return (
-    <div
-      onClick={() => hasGuide && onClick?.(boss)}
-      className={`relative overflow-hidden rounded-xl shadow-lg transition-all duration-300 ${
-        hasGuide ? "cursor-pointer hover:scale-105" : ""
-      }`}
-    >
+  const content = (
+    <>
       <img
         src={boss.image}
         alt={boss.name}
@@ -40,6 +38,22 @@ const BossCard = ({ boss, onClick }: BossCardProps) => {
           Próximamente
         </div>
       )}
+    </>
+  );
+
+  // Guía escrita: enlace normal (<a href>) para que Google pueda seguirlo
+  // y encontrar la guía desde la portada.
+  if (boss.guideUrl) {
+    return (
+      <a href={boss.guideUrl} className={className} aria-label={`Guía de ${boss.name}`}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div onClick={() => hasGuide && onClick?.(boss)} className={className}>
+      {content}
     </div>
   );
 };

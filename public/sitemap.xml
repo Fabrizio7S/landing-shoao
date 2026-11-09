@@ -2,24 +2,29 @@
 <!--
   Lista de páginas para Google. Al agregar una guía nueva, copia uno de los
   bloques <url> de una guía y cambia el nombre del boss (versión ES y EN).
+  <lastmod> = fecha del último cambio de esa página (AAAA-MM-DD).
 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.shoaomaple.com/</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
   <url>
     <loc>https://www.shoaomaple.com/setup</loc>
+    <lastmod>2026-11-09</lastmod>
   </url>
 
   <!-- Mayrin -->
   <url>
     <loc>https://www.shoaomaple.com/guias/mayrin/</loc>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/mayrin/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/mayrin/en.html"/>
   </url>
   <url>
     <loc>https://www.shoaomaple.com/guias/mayrin/en.html</loc>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/mayrin/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/mayrin/en.html"/>
   </url>
@@ -27,11 +32,13 @@
   <!-- Bellona -->
   <url>
     <loc>https://www.shoaomaple.com/guias/bellona/</loc>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/bellona/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/bellona/en.html"/>
   </url>
   <url>
     <loc>https://www.shoaomaple.com/guias/bellona/en.html</loc>
+    <lastmod>2026-11-05</lastmod>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.shoaomaple.com/guias/bellona/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.shoaomaple.com/guias/bellona/en.html"/>
   </url>

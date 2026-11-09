@@ -31,6 +31,41 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.shoaomaple.com/" />
 
+    <!-- Datos estructurados para Google: qué es la web y quién es Shoao (con sus redes).
+         Si cambian las redes, actualizar también src/data/socials.ts -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.shoaomaple.com/#web",
+            "url": "https://www.shoaomaple.com/",
+            "name": "Shoao",
+            "alternateName": ["Shoao Maple", "shoaomaple"],
+            "description": "Guías de bosses y eventos de MapleStory GMS en español, novedades de GMS y KMS, y servicios de bosseo, leveleo y optimización de cuenta.",
+            "inLanguage": "es",
+            "publisher": { "@id": "https://www.shoaomaple.com/#shoao" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.shoaomaple.com/#shoao",
+            "name": "Shoao",
+            "url": "https://www.shoaomaple.com/",
+            "description": "Jugador veterano de MapleStory GMS y creador de contenido en español.",
+            "sameAs": [
+              "https://www.youtube.com/@ShoaoMaple",
+              "https://www.twitch.tv/xshoao",
+              "https://kick.com/shoao",
+              "https://www.tiktok.com/@shoaomaple",
+              "https://www.facebook.com/shoaomaple",
+              "https://discord.gg/fEQrFcTKBz"
+            ]
+          }
+        ]
+      }
+    </script>
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
   </head>
