@@ -181,7 +181,8 @@
   }
   // Contador: visitas totales de la guía y personas viéndola ahora (api/vistas.ts).
   // - Una visita se cuenta una sola vez cada 12 h por navegador.
-  // - Mientras la guía está abierta y visible avisa cada 30 s que sigue "viendo".
+  // - Cada pestaña abierta avisa cada 60 s que sigue "viendo" (también en segundo plano).
+  // - El número en pantalla se refresca cada 15 s, sin recargar la página.
   // - Si la API no responde (p. ej. falta la base de datos) no se muestra nada.
   function contador() {
     var partes = location.pathname.split("/");
@@ -230,16 +231,51 @@
       if (navigator.sendBeacon) navigator.sendBeacon("/api/vistas", cuerpo);
     }
 
-    var timer = null;
-    function empezar() { if (!timer) { avisar(); timer = setInterval(avisar, 30000); } }
-    function parar() { if (timer) { clearInterval(timer); timer = null; salir(); } }
+    function leer() {
+      fetch("/api/vistas?guia=" + guia)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && typeof d.visitas === "number") pintar(d); })
+        .catch(function () {});
+    }
+
+    // Presencia: la pestaña cuenta como "viendo" mientras está abierta, aunque
+    // esté detrás de otra. Solo deja de contar si lleva 10 min oculta (para no
+    // gastar la base de datos con pestañas olvidadas) o si se cierra.
+    var presencia = null, lectura = null, ocultaDesde = 0;
+    function conectar() {
+      if (presencia) return;
+      avisar();
+      presencia = setInterval(function () {
+        if (document.visibilityState === "hidden" && Date.now() - ocultaDesde > 10 * 60 * 1000) desconectar();
+        else avisar();
+      }, 60000);
+    }
+    function desconectar() {
+      if (!presencia) return;
+      clearInterval(presencia);
+      presencia = null;
+      salir();
+    }
+    // Lectura: el número se refresca cada 15 s mientras la guía está en pantalla.
+    function leerSeguido() { if (!lectura) lectura = setInterval(leer, 15000); }
+    function dejarDeLeer() { if (lectura) { clearInterval(lectura); lectura = null; } }
+
     document.addEventListener("visibilitychange", function () {
-      if (document.visibilityState === "visible") empezar(); else parar();
+      if (document.visibilityState === "visible") {
+        if (presencia) leer(); else conectar();
+        leerSeguido();
+      } else {
+        ocultaDesde = Date.now();
+        dejarDeLeer();
+      }
     });
-    window.addEventListener("pagehide", parar);
-    window.addEventListener("pageshow", function (e) { if (e.persisted) empezar(); });
-    // La primera visita se cuenta aunque la pestaña se abra en segundo plano.
-    if (document.visibilityState === "visible") empezar(); else avisar();
+    window.addEventListener("pagehide", function () { dejarDeLeer(); desconectar(); });
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted) { conectar(); if (document.visibilityState === "visible") leerSeguido(); }
+    });
+    if (document.visibilityState === "hidden") ocultaDesde = Date.now();
+    conectar();
+    if (document.visibilityState === "visible") leerSeguido();
   }
 
   function alCargar() { arreglarVideos(); agruparMenu(); datosGoogle(); contador(); }

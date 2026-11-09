@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { GET as getVideos } from './api/videos'
-import { POST as postVistas } from './api/vistas'
+import { GET as getVistas, POST as postVistas } from './api/vistas'
 
 const staticGuides = (): Plugin => {
   const rewrite = (req: { url?: string }, _res: unknown, next: () => void) => {
@@ -38,12 +38,11 @@ const localApi = (): Plugin => {
   const handler = async (req: IncomingMessage, res: ServerResponse, next: () => void) => {
     if (req.url?.startsWith('/api/videos')) return send(res, await getVideos())
     if (req.url?.startsWith('/api/vistas')) {
-      if (req.method !== 'POST') {
-        res.statusCode = 405
-        return res.end()
-      }
-      const request = new Request('http://localhost/api/vistas', { method: 'POST', body: await readBody(req) })
-      return send(res, await postVistas(request))
+      const url = 'http://localhost' + req.url
+      if (req.method === 'GET') return send(res, await getVistas(new Request(url)))
+      if (req.method === 'POST') return send(res, await postVistas(new Request(url, { method: 'POST', body: await readBody(req) })))
+      res.statusCode = 405
+      return res.end()
     }
     next()
   }

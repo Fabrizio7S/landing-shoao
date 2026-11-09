@@ -1,25 +1,27 @@
 /**
- * POST /api/vistas — contador de cada guía: visitas totales y personas viéndola ahora.
+ * /api/vistas — contador de cada guía: visitas totales y personas viéndola ahora.
+ * Lo usa la barra de las guías (public/guias/_comun/barra-shoao.js).
  *
- * Lo llama la barra de las guías (public/guias/_comun/barra-shoao.js):
+ * POST (escribir) — cada pestaña con la guía abierta, cada 60 s:
  *   { guia: "mayrin", sesion: "<id al azar de esa pestaña>", nueva: true }
  *     → suma una visita (si nueva es true) y marca esa pestaña como "viendo".
- *       La barra lo repite cada 30 s mientras la guía está abierta y visible.
  *   { guia: "mayrin", sesion: "...", salir: true }
- *     → la pestaña se cerró o se ocultó: deja de contarla como "viendo".
- * Responde { visitas, viendo }.
+ *     → la pestaña se cerró: deja de contarla.
+ * GET /api/vistas?guia=mayrin (leer) — cada 15 s mientras la guía está en pantalla.
+ *     La respuesta se guarda 10 s en la caché de Vercel y la comparten todos los
+ *     visitantes, así que leer cuesta lo mismo con 5 personas que con 500.
+ * Ambos responden { visitas, viendo }.
  *
- * "Viendo ahora" = pestañas que avisaron en los últimos 75 s.
+ * "Viendo ahora" = pestañas abiertas que avisaron en los últimos 150 s
+ * (los navegadores retrasan los avisos de pestañas en segundo plano hasta ~1 min).
  * Las versiones en español e inglés de una guía cuentan juntas.
  *
  * Datos guardados en Upstash Redis (Vercel → Storage → Upstash for Redis).
- * Vercel crea solas las variables KV_REST_API_URL y KV_REST_API_TOKEN
- * (o UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN) al conectarla.
  * Sin base de datos: en local (npm run dev) se guarda en memoria para probar;
  * en Vercel responde 503 y la guía simplemente no muestra el contador.
  */
 
-const VIENDO_MS = 75_000;
+const VIENDO_MS = 150_000;
 const GUIA = /^[a-z0-9-]{1,40}$/;
 const SESION = /^[A-Za-z0-9-]{8,64}$/;
 
@@ -86,6 +88,14 @@ async function contarRedis(guia: string, sesion: string, nueva: boolean, salir: 
   return { visitas: Number(r[0] ?? 0), viendo: Number(r[3] ?? 0) };
 }
 
+async function leerRedis(guia: string): Promise<Contador> {
+  const r = await redis([
+    ["GET", `vistas:${guia}`],
+    ["ZCOUNT", `viendo:${guia}`, Date.now() - VIENDO_MS, "+inf"],
+  ]);
+  return { visitas: Number(r[0] ?? 0), viendo: Number(r[1] ?? 0) };
+}
+
 // ---------- Sin base de datos (solo para probar en local) ----------
 
 const memoria = new Map<string, { visitas: number; viendo: Map<string, number> }>();
@@ -101,7 +111,36 @@ function contarMemoria(guia: string, sesion: string, nueva: boolean, salir: bool
   return { visitas: g.visitas, viendo: g.viendo.size };
 }
 
-// ---------- Handler ----------
+function leerMemoria(guia: string): Contador {
+  const g = memoria.get(guia);
+  if (!g) return { visitas: 0, viendo: 0 };
+  const limite = Date.now() - VIENDO_MS;
+  let viendo = 0;
+  for (const t of g.viendo.values()) if (t >= limite) viendo++;
+  return { visitas: g.visitas, viendo };
+}
+
+// ---------- Handlers ----------
+
+export async function GET(request: Request): Promise<Response> {
+  const guia = new URL(request.url).searchParams.get("guia") ?? "";
+  if (!GUIA.test(guia)) return json({ error: "Petición inválida" }, 400);
+  if (REDIS_URL && REDIS_TOKEN) {
+    try {
+      return Response.json(await leerRedis(guia), {
+        // Caché compartida en Vercel (CDN) 10 s; el navegador no la guarda.
+        headers: { "Cache-Control": "public, max-age=0, s-maxage=10, stale-while-revalidate=5" },
+      });
+    } catch {
+      return json({ error: "No se pudo leer el contador" }, 502);
+    }
+  }
+  if (process.env.VERCEL) {
+    return json({ error: "Falta conectar la base de datos (Upstash Redis)" }, 503);
+  }
+  return json(leerMemoria(guia));
+}
+
 
 export async function POST(request: Request): Promise<Response> {
   let datos: Peticion;
