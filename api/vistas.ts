@@ -23,8 +23,23 @@ const VIENDO_MS = 75_000;
 const GUIA = /^[a-z0-9-]{1,40}$/;
 const SESION = /^[A-Za-z0-9-]{8,64}$/;
 
-const REDIS_URL = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
-const REDIS_TOKEN = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
+/**
+ * Claves de Upstash. Vercel las crea con el prefijo elegido al conectar la base
+ * de datos (KV_REST_API_URL, STORAGE_REST_API_URL, UPSTASH_REDIS_REST_URL...),
+ * así que se busca cualquier variable que termine en REST_API_URL / REST_URL
+ * y su TOKEN correspondiente (no el de solo lectura).
+ */
+function clavesRedis(): { url?: string; token?: string } {
+  const env = process.env;
+  for (const nombre of Object.keys(env).sort()) {
+    const m = nombre.match(/^(.*?)(REST_API_URL|REDIS_REST_URL)$/);
+    if (!m || !env[nombre]?.startsWith("https://")) continue;
+    const token = env[m[1] + m[2].replace("URL", "TOKEN")];
+    if (token) return { url: env[nombre], token };
+  }
+  return {};
+}
+const { url: REDIS_URL, token: REDIS_TOKEN } = clavesRedis();
 
 interface Peticion {
   guia?: unknown;
