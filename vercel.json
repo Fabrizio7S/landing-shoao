@@ -2,15 +2,36 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "landing-shoao.vercel.app" }],
-      "destination": "https://www.shoaomaple.com/:path*",
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "landing-shoao.vercel.app"
+        }
+      ],
+      "destination": "https://www.shoaomaple.com/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "landing-shoao-dtkc.vercel.app" }],
-      "destination": "https://www.shoaomaple.com/:path*",
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "landing-shoao-dtkc.vercel.app"
+        }
+      ],
+      "destination": "https://www.shoaomaple.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "landing-shoao-9kye.vercel.app"
+        }
+      ],
+      "destination": "https://www.shoaomaple.com/$1",
       "permanent": true
     },
     {
